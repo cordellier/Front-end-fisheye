@@ -1,21 +1,40 @@
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <link href="css/style.css" rel="stylesheet" type="text/css" />
-    <meta charset="utf-8">
-    <link rel="icon" type="image/png" href="assets/favicon.png">
-    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
-    <title>Fisheye</title>
-  </head>
-  <body>
-    <header>
-        <img src="assets/images/logo.png" class="logo" alt="fisheye logo"/>
-        <h1>Nos photographes</h1>
-    </header>
-    <main id="main">
-        <div class="photographer_section"></div>
-    </main>
-    <script src="scripts/templates/photographer.js"></script>
-    <script src="scripts/pages/index.js"></script>
-  </body>
+
+<head>
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <meta charset="utf-8">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+  <title>Fisheye</title>
+</head>
+
+<body>
+  <header>
+    <img src="assets/images/logo.png" class="logo" alt="fisheye logo" onclick="redirectToHome()" tabindex="0"/>
+    <h1>Nos photographes</h1>
+  </header>
+  <main id="main">
+    <div class="photographer_section"></div>
+  </main>
+  <script type="module" src="scripts/templates/photographer.js"></script>
+  <script type="module" src="scripts/pages/index.js"></script>
+  <script>
+    function redirectToHome() {
+        // Redirigez l'utilisateur vers la page d'accueil
+        window.location.href = 'index.html';
+    }
+
+    document.addEventListener('keydown', function (event) {
+        // Vérifiez si la touche "Alt" est enfoncée
+        var altKeyPressed = event.altKey;
+
+        if (altKeyPressed) {
+            // Redirigez l'utilisateur vers la page d'accueil
+            redirectToHome();
+        }
+    });
+</script>
+</body>
+
 </html>
