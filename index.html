@@ -11,30 +11,13 @@
 
 <body>
   <header>
-    <img src="assets/images/logo.png" class="logo" alt="fisheye logo" onclick="redirectToHome()" tabindex="0"/>
+    <img src="assets/images/logo.png" class="logo" alt="fisheye logo" tabindex="0">
     <h1>Nos photographes</h1>
   </header>
   <main id="main">
     <div class="photographer_section"></div>
   </main>
-  <script type="module" src="scripts/templates/photographer.js"></script>
   <script type="module" src="scripts/pages/index.js"></script>
-  <script>
-    function redirectToHome() {
-        // Redirigez l'utilisateur vers la page d'accueil
-        window.location.href = 'index.html';
-    }
-
-    document.addEventListener('keydown', function (event) {
-        // Vérifiez si la touche "Alt" est enfoncée
-        var altKeyPressed = event.altKey;
-
-        if (altKeyPressed) {
-            // Redirigez l'utilisateur vers la page d'accueil
-            redirectToHome();
-        }
-    });
-</script>
 </body>
 
-</html>
+</html> 

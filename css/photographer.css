@@ -1,41 +1,150 @@
+:root {
+    --color-burgundy: #901C1C;
+    --color-orange: #D3573C;
+    --color-salmon: #DB8876;
+    --color-grey: #525252;
+    --color-white: #FAFAFA;
+}
+
+body {
+    margin: 0 auto;
+    max-width: 1240px;
+    font-family: 'DM Sans';
+}
+
 #contact_modal {
     display: none;
 }
 
-.photograph-header {
-    background-color: #FAFAFA;
-    height: 300px;
-    margin: 0 100px;
+.photographer_banner {
+    height: 133px;
 }
+
+.photograph-header {
+    background-color: var(--color-white);
+    height: 313px;
+    display: flex;
+    position: relative;
+    width: 1240px;
+}
+
+.photograph-header h2 {
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 83px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: var(--color-orange);
+    position: absolute;
+    top: 71px;
+    left: 50px;
+}
+
+.photograph-header h3 {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 31px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: var(--color-burgundy);
+    position: absolute;
+    left: 50px;
+    top: 154px;
+}
+
+.photograph-header p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: var(--color-grey);
+    position: absolute;
+    left: 50px;
+    top: 204px;
+}
+
+.photograph-header img {
+    height: 226px;
+    width: auto;
+    position: relative;
+    left: -13px;
+    top: -9px;
+}
+
+.photograph-header .photographer_card {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    align-self: center;
+    position: absolute;
+    right: 50px;
+} 
 
 .contact_button {
     font-size: 20px;
     font-weight: bold;
-    color: white;
+    color: var(--color-white);
     padding: 11px;
     width: 170px;
     height: 70px;
     border: none;
-    background-color: #901C1C;
+    background-color: var(--color-burgundy);
+    border-radius: 5px;
+    cursor: pointer;
+    align-self: center;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.contact_button:hover {
+    background-color: var(--color-orange);
+}
+
+.photograph-content {
+    display: flex;
+}
+
+.send-button {
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--color-white);
+    padding: 11px;
+    width: 170px;
+    height: 70px;
+    border: none;
+    background-color: var(--color-burgundy);
     border-radius: 5px;
     cursor: pointer;
 }
 
+.send-button:hover {
+    background-color: var(--color-orange);
+}
+
 .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    height: 860px;
     border-radius: 5px;
-    background-color: #DB8876;
-    width: 50%;
+    background-color: var(--color-salmon);
+    width: 40%;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding: 35px;
+    padding: 20px 35px 0 35px;
     margin: auto;
 }
 
 .modal header {
-    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
     width: 100%;
+    position: relative;
 }
 
 .modal header img {
@@ -45,7 +154,15 @@
 .modal header h2 {
     font-size: 64px;
     font-weight: normal;
-    text-align: center;
+    text-align: left;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+.firstname-container {
+    padding-top: 72px;
 }
 
 form {
@@ -56,7 +173,7 @@ form {
 }
 
 form label {
-    color: #312E2E;
+    color: var(--color-grey);
     font-size: 36px;
 }
 
@@ -65,12 +182,56 @@ form div {
     flex-direction: column;
     width: 100%;
     align-items: self-start;
-    margin-bottom: 26px;
 }
 
 form input {
     width: 100%;
-    height: 68px;
+    height: 60px;
     border: none;
     border-radius: 5px;
+    padding: 8px;
+    font-size: 18px;
+}
+
+#message {
+    height: 120px;
+    margin-bottom: 26px;
+    vertical-align: top;
+    line-height: 1;
+    width: 100%;
+    border-radius: 5px;
+    padding: 8px;
+    font-size: 18px;
+    resize: none;
+}
+
+.message-container {
+    padding-top: 8px;
+}
+
+.modal-close-btn {
+    position: absolute;
+    right: 0;
+    top: 15px;
+}
+
+.formData[data-error]::after {
+    content: attr(data-error);
+    font-size: 0.8em;
+    color: var(--color-white);
+    display: block;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    text-align: left;
+    line-height: 0.3;
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.formData[data-error-visible="true"]::after {
+    opacity: 1;
+}
+
+.formData[data-error-visible="true"] .text-control {
+    border: 2px solid var(--color-burgundy);
 }

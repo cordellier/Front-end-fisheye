@@ -1,26 +1,10 @@
-import { createUserCardDOM } from "../templates/photographer.js";
-
-async function getPhotographers() {
-  try {
-    const response = await fetch("data/photographers.json");
-
-    if (!response.ok) {
-      throw new Error("Failed to fetch data");
-    }
-
-    const data = await response.json();
-
-    return data;
-  } catch (error) {
-    console.error("Error fetching photographers data:", error);
-  }
-}
+import { createPhotographerCard } from "../templates/photographer.js";
+import { getPhotographers } from "../utils/fetchJsonData.js";
 
 async function displayData(photographers, photographersSection) {
   photographers.forEach((photographer) => {
-    const userCardDOM = createUserCardDOM(photographer);
-
-    photographersSection.appendChild(userCardDOM);
+    const photographerCard = createPhotographerCard(photographer);
+    photographersSection.appendChild(photographerCard);
   });
 }
 

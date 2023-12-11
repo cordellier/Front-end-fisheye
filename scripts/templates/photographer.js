@@ -1,7 +1,5 @@
-// Constante
 const ClassPhotographerCard = "photographer_picture";
 
-// Utiliser un objet pour regrouper les fonctions utilitaires
 export const DOMUtils = {
   createImage: (src, alt) => {
     try {
@@ -45,7 +43,6 @@ export const DOMUtils = {
   },
 };
 
-// Fonction principale pour créer la carte d'un photographe
 export function createPhotographerCard(data) {
   const { name, portrait, city, country, tagline, price, id } = data;
   const picturePath = `assets/photographers/${portrait}`;
@@ -62,14 +59,15 @@ export function createPhotographerCard(data) {
   const imgContainer = DOMUtils.createCardContainer([img]);
 
   const content = [imgContainer, h2, h3, tag, prix];
+
   const article = createArticleWithLink(id, content, name);
 
   return article;
 }
 
-// Fonction utilitaire pour créer un article avec un lien
 function createArticleWithLink(id, content, name) {
   const article = document.createElement("article");
+
   const link = DOMUtils.createLinkWithHref(`photographer.html?id=${id}`);
   const ariaLabel = `View Photographer Profile: ${name}`;
   link.setAttribute("aria-label", ariaLabel);
@@ -82,22 +80,20 @@ function createArticleWithLink(id, content, name) {
   return article;
 }
 
-// Fonction pour créer le DOM d'une carte utilisateur (utilise la fonction principale)
-export function createUserCardDOM(data) {
-  return createPhotographerCard(data);
-}
-
-// Fonction permettant de retourner sur l'acceuil avec "Alt"
 function redirectToHome() {
   window.location.href = "index.html";
 }
 
-document.addEventListener("keydown", function (event) {
-  var altKeyPressed = event.altKey;
-
-  if (altKeyPressed) {
-    redirectToHome();
-
-    document.querySelector(".logo").style.transform = "scale(1.1)";
-  }
+document.querySelector(".logo").addEventListener("click", function () {
+  redirectToHome();
 });
+
+export function createCardContainer(children) {
+  const imgcontainer = document.createElement("div");
+  imgcontainer.classList.add("photographer_card");
+  imgcontainer.setAttribute("tabindex", "0");
+  children.forEach((child) => {
+    imgcontainer.appendChild(child);
+  });
+  return imgcontainer;
+}
