@@ -1,0 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+a {
+  all: initial;
+  cursor: pointer;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  margin: 0 auto;
+  max-width: 1440px;
+}

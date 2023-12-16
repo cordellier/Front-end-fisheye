@@ -1,0 +1,37 @@
+  header {
+    height: 90px;
+    margin: 0 auto;
+    padding: 0 30px;
+    max-width: 1400px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 90px;
+
+    h1 {
+      color: $color-burgundy;
+      margin-right: 100px;
+    }
+
+    .logo {
+      height: 50px;
+      margin-left: 100px;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      &:active {
+        transform: scale(1.1);
+      }
+    }
+  }
+
+  .logo:hover {
+    cursor: pointer;
+  }
+
+  .logo:active {
+    transform: scale(1.1);
+  }

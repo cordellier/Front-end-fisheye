@@ -1,4 +1,4 @@
-function displayModal() {
+function openCustomModal() {
   const modal = document.getElementById("contact_modal");
   modal.style.display = "block";
 }

@@ -1,0 +1,161 @@
+.photograph-content {
+    display: flex;
+}
+
+.photographer_banner {
+    height: 133px;
+}
+
+.photograph-header {
+    background-color: $color-white;
+    height: 313px;
+    display: flex;
+    position: relative;
+    width: 1240px;
+}
+
+.photograph-header h2 {
+    font-size: 64px;
+    font-weight: 400;
+    line-height: 83px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: $color-orange;
+    position: absolute;
+    top: 71px;
+    left: 50px;
+}
+
+.photograph-header h3 {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 31px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: $color-burgundy;
+    position: absolute;
+    left: 50px;
+    top: 154px;
+}
+
+.photograph-header p {
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    color: $color-grey;
+    position: absolute;
+    left: 50px;
+    top: 204px;
+}
+
+.photograph-header img {
+    height: 226px;
+    width: auto;
+    position: relative;
+    left: -13px;
+    top: -9px;
+}
+
+.photograph-header .photographer_card {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    align-self: center;
+    position: absolute;
+    right: 50px;
+} 
+
+/* DROPDOWN */
+
+.organize {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    text-align: left;
+    padding-top: 30px;
+}
+
+.dropdown {
+    border-radius: 5px;
+    margin-left: 25px;
+    margin-top: 9px;
+    position: relative;
+    display: flex;
+    width: 170px;
+    flex-direction: column;
+    background: $color-burgundy;
+}
+
+.dropdown-menu {
+    display: none;
+    transition: display 0.2s ease;
+    list-style: none;
+    height: 106px;
+}
+
+.dropdown-option {
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    color: $color-white;
+    background: $color-burgundy;
+    width: 100%;
+    padding-left: 20px;
+    height: 52px;
+    display: flex;
+    align-items: center;
+}
+
+.selected {
+    height: 64px;
+    border: none;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    align-items: center;
+    text-align: left;
+    cursor: pointer;
+    outline: none;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 23px;
+    letter-spacing: 0em;
+    color: $color-white;
+    background: $color-burgundy;
+}
+
+.dropdown-icon {
+    position: absolute;
+    right: 19px;
+    top: 18px;
+    transition: transform 0.15s ease-in-out;
+}
+
+.dropdown-divider {
+    border-top: 1px solid $color-white;
+    position: absolute;
+    width: 100%;
+    top: 64px; 
+}
+
+.dropdown svg {
+    position: absolute;
+    z-index: 500;
+}
+
+li {
+    list-style: none;
+}
+
+.dropdown-divider:first-of-type {
+    top: 113px;
+}

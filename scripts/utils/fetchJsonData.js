@@ -1,15 +1,18 @@
 export async function getPhotographers() {
   try {
-    const response = await fetch("data/photographers.json");
+    const response = await fetch("../../data/photographer.json");
 
     if (!response.ok) {
-      throw new Error("Failed to fetch data");
+      throw new Error("Échec de la récupération des données");
     }
 
     const data = await response.json();
 
     return data;
   } catch (error) {
-    console.error("Error fetching photographers data:", error);
+    console.error(
+      "Erreur lors de la récupération des données des photographes :",
+      error
+    );
   }
 }

@@ -1,4 +1,3 @@
-// Fonction permettant de retourner sur l'acceuil avec "Alt"
 function redirectToHome() {
   window.location.href = "index.html";
 }
