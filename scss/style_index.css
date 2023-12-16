@@ -10,8 +10,8 @@
 }
 
 a {
-  all: initial;
   cursor: pointer;
+  text-decoration: none;
 }
 
 body {
@@ -83,6 +83,44 @@ header .logo:active {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
+  text-decoration: none;
+}
+
+.card-container {
+  height: 200px;
+  width: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  -webkit-transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
+  transition: opacity 0.3s ease, -webkit-transform 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease, -webkit-transform 0.3s ease;
+}
+.card-container img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+.card-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.photographer_section a:hover .card-container {
+  -webkit-transform: translateY(-10px);
+          transform: translateY(-10px);
+}
+.photographer_section a:hover .card-container::after {
+  opacity: 0.3;
 }
 
 .photographer_section article h2 {
@@ -90,8 +128,12 @@ header .logo:active {
   font-size: 36px;
 }
 
+.photographer_section article h2:hover {
+  text-decoration: underline;
+}
+
 .photographer_section article h3 {
-  font-size: 13px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 17px;
   letter-spacing: 0em;
@@ -103,7 +145,15 @@ header .logo:active {
   height: 225px;
   position: relative;
   top: -8.5px;
-  left: -13px;
+}
+
+.photographer_section article p {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: black;
 }
 
 .card-container {
