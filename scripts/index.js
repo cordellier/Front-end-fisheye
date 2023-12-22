@@ -1,5 +1,5 @@
 //Import Class JS
-import { renderCard } from "./models/carPhotographerUI.js";
+import { renderCard } from "./view/carPhotographerUI.js";
 import { getPhotographers } from "./utils/fetchJsonData.js";
 
 async function displayData(photographers, photographersSection) {

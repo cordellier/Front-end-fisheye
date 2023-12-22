@@ -10,9 +10,6 @@ document.addEventListener("DOMContentLoaded", function () {
   const overlay = document.querySelector(".overlay");
   const modal = document.getElementById("contact_modal");
 
-  // Désactiver l'ouverture automatique
-  modal.style.display = "none";
-
   openModalBtn.addEventListener("click", displayModal);
   closeModalBtn.addEventListener("click", closeModal);
 
@@ -77,14 +74,4 @@ document.addEventListener("DOMContentLoaded", function () {
       closeModal();
     }
   }
-
-  // Fonction permettant de retourner sur l'accueil
-  function redirectToHome() {
-    window.location.href = "index.html";
-  }
-
-  // Écouteur d'événement pour le clic sur le logo
-  document.querySelector(".logo").addEventListener("click", function () {
-    redirectToHome();
-  });
 });

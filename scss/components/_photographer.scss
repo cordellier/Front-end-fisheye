@@ -15,7 +15,7 @@
 }
 
 .photograph-header h2 {
-    font-size: 64px;
+    font-size: 44px;
     font-weight: 400;
     line-height: 83px;
     letter-spacing: 0em;
@@ -67,7 +67,9 @@
     position: absolute;
     right: 50px;
 } 
-
+.photographer_card {
+    margin-top: 50px;
+}
 /* DROPDOWN */
 
 .organize {
@@ -159,3 +161,23 @@ li {
 .dropdown-divider:first-of-type {
     top: 113px;
 }
+
+
+.header-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.header-photographer-container {
+    height: 200px;
+    width: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative;
+  }
+  .header-photographer-container img {
+    height: 100%;
+    width: 100%;
+      }
+
+      

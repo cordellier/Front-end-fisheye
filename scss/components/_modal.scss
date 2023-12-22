@@ -4,14 +4,15 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  height: 860px;
+  height: 600px;
   border-radius: 5px;
   background-color: $color-salmon;
-  width: 40%;
+  width: 500px;
   display: flex;
   flex-direction: column;
   padding: 20px 35px 0 35px;
   margin: auto;
+  display: none;
 }
 
 .modal header {
@@ -26,7 +27,7 @@
 }
 
 .modal header h2 {
-  font-size: 64px;
+  font-size: 40px;
   font-weight: normal;
   text-align: left;
   line-height: 1;
@@ -36,7 +37,7 @@
 }
 
 .firstname-container {
-  padding-top: 72px;
+  padding-top: 20px;
 }
 
 form {
@@ -48,7 +49,7 @@ form {
 
 form label {
   color: $color-grey;
-  font-size: 36px;
+  font-size: 25px;
 }
 
 form div {
@@ -60,7 +61,6 @@ form div {
 
 form input {
   width: 100%;
-  height: 60px;
   border: none;
   border-radius: 5px;
   padding: 8px;
@@ -87,6 +87,10 @@ form input {
   position: absolute;
   right: 0;
   top: 15px;
+}
+
+.modal-close-btn img {
+  width: 60%;
 }
 
 .formData[data-error]::after {
