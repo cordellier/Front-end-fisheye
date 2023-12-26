@@ -1,0 +1,80 @@
+//Média gallery
+
+.main_content{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+}
+
+.photo-grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px 60px;
+    margin-top: 30px;
+    width: 1240px;
+}
+
+.gallery_card{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.gallery_card a{
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+a img{
+    transition: all .2s ease-in-out;
+}
+
+a:hover img{
+    transform: scale(1.05);
+}
+
+a:focus:not(:hover){
+    outline: 2px solid var(--color-secondary);
+}
+
+.gallery-thumbnail {
+    width: 100%;
+    height: 300px;
+    border-radius: 5px;
+    object-fit: cover;
+}
+
+figcaption{
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+}
+
+figcaption h2{
+    font-weight: 100;
+    color: $color-burgundy;
+    font-size: 20px;
+}
+
+figcaption div{ 
+    align-self: flex-start;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: $color-burgundy;
+    font-size: 20px;
+}
+
+.btn_like{
+    border: none;
+    background: $color-white;
+    font-size: 20px;
+    color: $color-salmon;
+    cursor: pointer;
+}
+
+.liked{
+    color: $color-burgundy;
+}

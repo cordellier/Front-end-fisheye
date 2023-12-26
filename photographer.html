@@ -10,6 +10,9 @@
   <!-- Feuille de style -->
   <link href="/scss/style_profil.css" rel="stylesheet" type="text/css" />
 
+  <!-- CDN Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
   <!-- Titre de la page -->
   <title>Fisheye - photographe </title>
 </head>
@@ -26,39 +29,41 @@
     <!-- Section du photographe avec bouton de contact -->
     <section class="photograph-header">
       <button class="contact_button" id="openButton">Contactez-moi</button>
-      
+
       <div class="photograph-content">
     </section>
-    
 
-      <h2 class="organize">Trier par</h2>
+    <section class="main_content">
 
-      <div class="dropdown" role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-controls="options">
-        <div class="selected">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"
-            class="dropdown-icon">
-            <g clip-path="url(#clip0_173725_75)">
-              <path d="M9.88 20.5466L16 14.44L22.12 20.5466L24 18.6666L16 10.6666L8 18.6666L9.88 20.5466Z"
-                fill="white" />
-            </g>
-            <defs>
-              <clipPath id="clip0_173725_75">
-                <rect width="32" height="32" fill="white" transform="translate(32 32) rotate(-180)" />
-              </clipPath>
-            </defs>
-          </svg>
+      <div class="main_content_filter">
+        <h2>Trier par</h2>
+        <div class="filter_section" >
+            <div class="dropdown">
+                <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by">
+                    <span id="current_filter">Titre</span>
+                    <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
+                </button>
+
+                <ul class="dropdown_content" aria-hidden="true">
+                    <li role="option">
+                        <button type="button" tabindex="-1" aria-label="Sort by title">Titre</button>
+                    </li>
+                    <li role="option">
+                        <button type="button" tabindex="-1" aria-label="Sort by popularity">Popularité</button>
+                    </li>
+                    <li role="option">
+                        <button type="button" tabindex="-1" aria-label="Sort by date">Date</button>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <ol id="options" class="dropdown-menu" role="listbox" aria-label="Options">
-          <li class="dropdown-option" tabindex="0" role="option" id="filter-popularite" data-order="1">
-            Popularité</li>
-            <li class="dropdown-divider" role="separator"></li>
-          <li class="dropdown-option" tabindex="0" role="option" id="filter-date" data-order="2">Date</li>
-          <li class="dropdown-divider" role="separator"></li>
-          <li class="dropdown-option" tabindex="0" role="option" id="filter-titre" data-order="3">Titre
-          </li>
-        </ol>
-      </div>
     </div>
+    <div class="main_content_medias"></div>
+    </section>
+
+    <section class="photo-grid" id="photo-grid" role="group">
+      <!-- Photos will be dynamically added here -->
+    </section>
   </main>
 
   <!-- Modale de contact -->
@@ -78,30 +83,34 @@
           <!-- Champ Prénom -->
           <div class="formData firstname-container">
             <label for="first">Prénom</label>
-            <input class="text-control" id="first" type="text" required aria-invalid="false" aria-describedby="first-error">
+            <input class="text-control" id="first" type="text" required aria-invalid="false"
+              aria-describedby="first-error">
           </div>
           <!-- Champ Nom -->
           <div class="formData">
             <label for="last">Nom</label>
-            <input class="text-control" id="last" type="text" required aria-invalid="false" aria-describedby="last-error">
+            <input class="text-control" id="last" type="text" required aria-invalid="false"
+              aria-describedby="last-error">
           </div>
           <!-- Champ Email -->
           <div class="formData">
             <label for="email">Email</label>
-            <input class="text-control" id="email" type="email" required aria-invalid="false" aria-describedby="email-error">
+            <input class="text-control" id="email" type="email" required aria-invalid="false"
+              aria-describedby="email-error">
           </div>
           <!-- Champ Message -->
           <div class="formData message-container">
             <label for="message">Votre message</label>
-            <textarea class="text-control" id="message" required aria-invalid="false" aria-describedby="message-error"></textarea>
+            <textarea class="text-control" id="message" required aria-invalid="false"
+              aria-describedby="message-error"></textarea>
           </div>
           <!-- Bouton d'envoi du formulaire -->
           <button class="send-button" type="submit" aria-label="Ok, formulaire envoyé">Envoyer</button>
-        </form>        
+        </form>
       </div>
     </div>
   </div>
-  
+
   <div id="image-carousel" class="image-carousel" aria-hidden="true" role="dialog" aria-modal="true">
     <div class="carousel-prev" aria-label="Previous Image" tabindex="0">
       <svg width="30" height="48" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg">

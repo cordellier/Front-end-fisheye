@@ -182,6 +182,10 @@ header .logo:active {
   color: #525252;
 }
 
+#main {
+  padding: 0 120px;
+}
+
 .photograph-content {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -262,136 +266,102 @@ header .logo:active {
 }
 
 /* DROPDOWN */
-.organize {
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 23px;
-  letter-spacing: 0em;
-  text-align: left;
-  padding-top: 30px;
-}
-
-.dropdown {
-  border-radius: 5px;
-  margin-left: 25px;
-  margin-top: 9px;
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  width: 170px;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-  background: #901C1C;
-}
-
-.dropdown-menu {
-  display: none;
-  -webkit-transition: display 0.2s ease;
-  transition: display 0.2s ease;
-  list-style: none;
-  height: 106px;
-}
-
-.dropdown-option {
-  text-align: left;
-  cursor: pointer;
-  outline: none;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 23px;
-  letter-spacing: 0em;
-  color: #FAFAFA;
-  background: #901C1C;
-  width: 100%;
-  padding-left: 20px;
-  height: 52px;
+.main_content_filter {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  height: 50px;
+  gap: 10px;
+  margin-top: 20px;
 }
 
-.selected {
-  height: 64px;
-  border: none;
+.main_content_filter h2 {
+  font-size: 18px;
+}
+
+.filter_section {
+  position: relative;
+  height: 100%;
+}
+
+.dropdown {
+  z-index: 999;
+  position: absolute;
   border-radius: 5px;
+  overflow: hidden;
+}
+
+.rotate {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.dropdown_content {
+  max-height: 0;
+  background-color: #901C1C;
+  -webkit-transition: max-height 0.1s ease-in-out;
+  transition: max-height 0.1s ease-in-out;
+}
+
+.dropdown_content li {
+  position: relative;
+  width: 150px;
+}
+
+.dropdown_content li::before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  width: 85%;
+  height: 1px;
+  background-color: #FAFAFA;
+}
+
+.btn_drop,
+.dropdown_content li button {
+  height: 50px;
+  padding: 15px;
+  font-size: 18px;
+  color: #FAFAFA;
+}
+
+.btn_drop {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  position: relative;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  width: 150px;
+  background-color: #901C1C;
+  border: none;
+}
+
+.dropdown_content li button {
+  width: 100%;
   text-align: left;
+}
+
+.dropdown_content li button:hover,
+.dropdown_content li button:focus,
+.btn_drop:hover,
+.btn_drop:focus {
+  background-color: #DB8876;
+  color: black;
   cursor: pointer;
-  outline: none;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 23px;
-  letter-spacing: 0em;
-  color: #FAFAFA;
-  background: #901C1C;
 }
 
-.dropdown-icon {
-  position: absolute;
-  right: 19px;
-  top: 18px;
-  -webkit-transition: -webkit-transform 0.15s ease-in-out;
-  transition: -webkit-transform 0.15s ease-in-out;
-  transition: transform 0.15s ease-in-out;
-  transition: transform 0.15s ease-in-out, -webkit-transform 0.15s ease-in-out;
-}
-
-.dropdown-divider {
-  border-top: 1px solid #FAFAFA;
-  position: absolute;
-  width: 100%;
-  top: 64px;
-}
-
-.dropdown svg {
-  position: absolute;
-  z-index: 500;
-}
-
-li {
-  list-style: none;
-}
-
-.dropdown-divider:first-of-type {
-  top: 113px;
-}
-
-.header-container {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-.header-photographer-container {
-  height: 200px;
-  width: 200px;
-  border-radius: 50%;
-  overflow: hidden;
-  position: relative;
-}
-
-.header-photographer-container img {
-  height: 100%;
-  width: 100%;
+.curtain_effect {
+  max-height: 200px;
 }
 
 .contact_button,

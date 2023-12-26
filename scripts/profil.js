@@ -1,19 +1,36 @@
 import { getPhotographers } from "./utils/fetchJsonData.js";
 import { renderCard } from "./view/headerPhotographerUI.js";
 import { openCustomModal, closeModal } from "./utils/contactForm.js";
+import { factoryMedia } from "./view/mediaUI.js";
 
 async function initPage() {
+  // Récupérer l'id de l'url
   const searchParam = new URLSearchParams(window.location.search);
   const id = searchParam.get("id");
   const photographe = await findPhotographe(Number.parseInt(id));
   const photographeHeader = renderCard(photographe);
   const baseView = document.querySelector(".photograph-content");
   baseView.innerHTML = photographeHeader;
+  // Afficher l'ensemble des médias du photographe
+  const medias = await findMediaByPhotographe(Number.parseInt(id));
+  console.log(medias);
+  displayMedia(medias);
 }
 
 async function findPhotographe(id) {
   const { photographers } = await getPhotographers();
   return photographers.find((p) => p.id === id);
+}
+
+async function findMediaByPhotographe(id) {
+  const { media } = await getPhotographers();
+  return media.filter((m) => m.photographerId === id);
+}
+
+function displayMedia(listMedia) {
+  const mediaZone = document.querySelector(".photo-grid");
+  mediaZone.innerHTML = "";
+  listMedia.forEach((media) => (mediaZone.innerHTML += factoryMedia(media)));
 }
 
 initPage();
