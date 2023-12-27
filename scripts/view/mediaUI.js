@@ -27,16 +27,15 @@ export function renderVideo(data) {
         <section class="gallery">
           <article class="gallery_card">
             <video class="gallery-thumbnail" controls>
-            <source src="assets/images/${photographerId}/${video} type="video/mp4">
-              </video>
-            </a>
+              <source src="assets/images/${photographerId}/${video}" type="video/mp4">
+            </video>
           </article>
         
           <figcaption>
             <h2>${title}</h2>
               <div role="group" aria-label="Like button and number of likes">
-              <span class="nLike">${likes}</span>
-                <button class="btn_like" type="button" arial-label="like">
+                <span class="nLike">${likes}</span>
+                <button class="btn_like" type="button" aria-label="like">
                   <span class="fa-solid fa-heart" aria-hidden="true"></span>
                 </button>
               </div>

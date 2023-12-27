@@ -4,7 +4,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
-  height: 600px;
+  height: 650px;
   border-radius: 5px;
   background-color: $color-salmon;
   width: 500px;
@@ -29,11 +29,15 @@
 .modal header h2 {
   font-size: 40px;
   font-weight: normal;
-  text-align: left;
-  line-height: 1;
-  margin: 0;
-  padding: 0;
   width: 100%;
+  margin-left: -65px;
+}
+
+.modal-header p {
+  font-size: 40px;
+  font-weight: normal;
+  width: 100%;
+  margin-left: -65px;
 }
 
 .firstname-container {
@@ -49,7 +53,7 @@ form {
 
 form label {
   color: $color-grey;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 form div {

@@ -2,6 +2,12 @@ import { getPhotographers } from "./utils/fetchJsonData.js";
 import { renderCard } from "./view/headerPhotographerUI.js";
 import { openCustomModal, closeModal } from "./utils/contactForm.js";
 import { factoryMedia } from "./view/mediaUI.js";
+import { setupContactForm } from "./controller/modal.js";
+import { displayMediaWithFilter, openCloseFilterMenu } from "./utils/filter.js";
+
+document.addEventListener("DOMContentLoaded", function () {
+  setupContactForm();
+});
 
 async function initPage() {
   // Récupérer l'id de l'url
@@ -15,6 +21,10 @@ async function initPage() {
   const medias = await findMediaByPhotographe(Number.parseInt(id));
   console.log(medias);
   displayMedia(medias);
+
+  // Ajout de la fonction de filtrage
+  displayMediaWithFilter({ medias });
+  openCloseFilterMenu(); // Appel de la fonction pour ouvrir/fermer le menu de filtre
 }
 
 async function findPhotographe(id) {

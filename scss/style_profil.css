@@ -69,7 +69,7 @@ header .logo:active {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 60px;
-  margin-top: 100px;
+  margin-top: 60px;
 }
 
 .photographer_section a {
@@ -164,17 +164,17 @@ header .logo:active {
 }
 
 .photographer_section p:first-of-type {
-  font-size: 10px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 13px;
   letter-spacing: 0em;
   text-align: center;
-  padding-top: 1px;
-  padding-bottom: 2px;
+  padding-top: 5px;
+  padding-bottom: 8px;
 }
 
 .photographer_section p:nth-of-type(2) {
-  font-size: 9px;
+  font-size: 15px;
   font-weight: 400;
   line-height: 12px;
   letter-spacing: 0em;
@@ -349,6 +349,8 @@ header .logo:active {
 .dropdown_content li button {
   width: 100%;
   text-align: left;
+  background-color: #901C1C;
+  border: none;
 }
 
 .dropdown_content li button:hover,
@@ -404,7 +406,7 @@ header .logo:active {
   -webkit-transform: translate(-50%, -50%);
           transform: translate(-50%, -50%);
   z-index: 1000;
-  height: 600px;
+  height: 650px;
   border-radius: 5px;
   background-color: #DB8876;
   width: 500px;
@@ -439,11 +441,15 @@ header .logo:active {
 .modal header h2 {
   font-size: 40px;
   font-weight: normal;
-  text-align: left;
-  line-height: 1;
-  margin: 0;
-  padding: 0;
   width: 100%;
+  margin-left: -65px;
+}
+
+.modal-header p {
+  font-size: 40px;
+  font-weight: normal;
+  width: 100%;
+  margin-left: -65px;
 }
 
 .firstname-container {
@@ -466,7 +472,7 @@ form {
 
 form label {
   color: #525252;
-  font-size: 25px;
+  font-size: 20px;
 }
 
 form div {
@@ -568,6 +574,11 @@ form input {
 .gallery_card a {
   border-radius: 5px;
   overflow: hidden;
+}
+
+.animeCard {
+  -webkit-animation: fade 0.2s ease-in-out;
+          animation: fade 0.2s ease-in-out;
 }
 
 a img {

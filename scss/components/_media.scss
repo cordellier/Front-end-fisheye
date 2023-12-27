@@ -26,6 +26,10 @@
     overflow: hidden;
 }
 
+.animeCard{
+    animation: fade .2s ease-in-out;
+}
+
 a img{
     transition: all .2s ease-in-out;
 }

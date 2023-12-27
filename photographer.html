@@ -2,143 +2,125 @@
 <html lang="fr">
 
 <head>
-  <!-- Métadonnées -->
-  <meta charset="utf-8">
-  <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
+    <!-- Métadonnées -->
+    <meta charset="utf-8">
+    <link rel="icon" type="image/png" href="assets/favicon.png">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans&display=swap" rel="stylesheet">
 
-  <!-- Feuille de style -->
-  <link href="/scss/style_profil.css" rel="stylesheet" type="text/css" />
+    <!-- Feuille de style -->
+    <link href="/scss/style_profil.css" rel="stylesheet" type="text/css" />
 
-  <!-- CDN Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CDN Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-  <!-- Titre de la page -->
-  <title>Fisheye - photographe </title>
+    <!-- Titre de la page -->
+    <title>Fisheye - photographe</title>
 </head>
 
 <body>
-  <!-- En-tête -->
-  <header>
-    <!-- Logo -->
-    <img src="assets/images/logo.png" class="logo" alt="Logo Fisheye" />
-  </header>
+    <!-- En-tête -->
+    <header>
+        <!-- Logo -->
+        <img src="assets/images/logo.png" class="logo" alt="Logo Fisheye">
+    </header>
 
-  <!-- Contenu principal -->
-  <main id="main">
-    <!-- Section du photographe avec bouton de contact -->
-    <section class="photograph-header">
-      <button class="contact_button" id="openButton">Contactez-moi</button>
+    <!-- Contenu principal -->
+    <main id="main">
+        <!-- Section du photographe avec bouton de contact -->
+        <section class="photograph-header">
+            <button class="contact_button" id="openButton" aria-label="Ouvrir le formulaire de contact">Contactez-moi</button>
 
-      <div class="photograph-content">
-    </section>
+            <div class="photograph-content"></div>
+        </section>
 
-    <section class="main_content">
+        <section class="main_content">
+          <div class="main_content_filter">
+            <h2>Trier par</h2>
+            <div class="filter_section" >
+                <div class="dropdown">
+                    <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by">
+                        <span id="current_filter">Titre</span>
+                        <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
+                    </button>
 
-      <div class="main_content_filter">
-        <h2>Trier par</h2>
-        <div class="filter_section" >
-            <div class="dropdown">
-                <button class="btn_drop" type="button" role="button" aria-haspopup="listbox" aria-expanded="false" aria-controls="filter options" aria-label="Sort by">
-                    <span id="current_filter">Titre</span>
-                    <span class="fa-solid fa-chevron-up" aria-hidden="true"></span>
-                </button>
+                    <ul class="dropdown_content" aria-hidden="true">
+                        <li role="option">
+                            <button type="button" tabindex="-1" aria-label="Sort by title">Titre</button>
+                        </li>
+                        <li role="option">
+                            <button type="button" tabindex="-1" aria-label="Sort by popularity">Popularité</button>
+                        </li>
+                        <li role="option">
+                            <button type="button" tabindex="-1" aria-label="Sort by date">Date</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+          </div>
+          <div class="main_content_medias"></div>
+        </section>
 
-                <ul class="dropdown_content" aria-hidden="true">
-                    <li role="option">
-                        <button type="button" tabindex="-1" aria-label="Sort by title">Titre</button>
-                    </li>
-                    <li role="option">
-                        <button type="button" tabindex="-1" aria-label="Sort by popularity">Popularité</button>
-                    </li>
-                    <li role="option">
-                        <button type="button" tabindex="-1" aria-label="Sort by date">Date</button>
-                    </li>
-                </ul>
+        <section class="photo-grid" id="photo-grid" role="group"></section>
+    </main>
+
+    <!-- Modale de contact -->
+    <div id="contact_modal" class="modal" role="dialog" aria-labelledby="contact-modal-title" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <header class="modal-header">
+                    <h2 id="contact-modal-title">Contactez-moi</h2>
+                    <p class="modal_form_name"></p>
+                    <div class="modal-close-btn" id="closeButton">
+                        <img src="assets/icons/close.svg" alt="Fermer la modale">
+                    </div>
+                </header>
+                <form id="contact-form" aria-labelledby="contact-modal-title">
+                    <div class="formData firstname-container">
+                        <label for="first">Prénom <span aria-hidden="true">*</span></label>
+                        <input class="text-control" id="first" type="text" required aria-invalid="false" aria-describedby="first-error">
+                    </div>
+                    <div class="formData">
+                        <label for="last">Nom <span aria-hidden="true">*</span></label>
+                        <input class="text-control" id="last" type="text" required aria-invalid="false" aria-describedby="last-error">
+                    </div>
+                    <div class="formData">
+                        <label for="email">Email <span aria-hidden="true">*</span></label>
+                        <input class="text-control" id="email" type="email" required aria-invalid="false" aria-describedby="email-error">
+                    </div>
+                    <div class="formData message-container">
+                        <label for="message">Votre message <span aria-hidden="true">*</span></label>
+                        <textarea class="text-control" id="message" required aria-invalid="false" aria-describedby="message-error"></textarea>
+                    </div>
+                    <button class="send-button" type="submit" aria-label="Envoyer le formulaire">Envoyer</button>
+                </form>
             </div>
         </div>
     </div>
-    <div class="main_content_medias"></div>
-    </section>
 
-    <section class="photo-grid" id="photo-grid" role="group">
-      <!-- Photos will be dynamically added here -->
-    </section>
-  </main>
+    <div id="image-carousel" class="image-carousel" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="carousel-prev" aria-label="Image précédente" tabindex="0">
+            <svg width="30" height="48" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M29.6399 42.36L11.3199 24L29.6399 5.64L23.9999 -2.46532e-07L-0.000107861 24L23.9999 48L29.6399 42.36Z" fill="#911C1C" />
+            </svg>
+        </div>
+        <div class="carousel-next" aria-label="Image suivante" tabindex="0">
+            <svg width="30" height="48" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0.360108 5.64L18.6801 24L0.360107 42.36L6.00011 48L30.0001 24L6.00011 3.88195e-06L0.360108 5.64Z" fill="#911C1C" />
+            </svg>
+        </div>
+        <div class="carousel-content">
+            <!-- Images will be added here -->
+        </div>
+        <div class="carousel-close" aria-label="Fermer le carrousel" tabindex="0">
+            <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" fill="#911C1C" />
+            </svg>
+        </div>
+    </div>
+    <div class="overlay"></div>
 
-  <!-- Modale de contact -->
-  <div id="contact_modal" class="modal" role="dialog" aria-labelledby="contact-modal-title" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <header class="modal-header">
-          <!-- Titre de la modale -->
-          <h2 id="contact-modal-title">Contactez-moi</h2>
-          <!-- Bouton de fermeture de la modale -->
-          <div class="modal-close-btn" id="closeButton">
-            <img src="assets/icons/close.svg" alt="Fermer la modale" />
-          </div>
-        </header>
-        <!-- Formulaire de contact -->
-        <form id="contact-form" aria-labelledby="contact-modal-title">
-          <!-- Champ Prénom -->
-          <div class="formData firstname-container">
-            <label for="first">Prénom</label>
-            <input class="text-control" id="first" type="text" required aria-invalid="false"
-              aria-describedby="first-error">
-          </div>
-          <!-- Champ Nom -->
-          <div class="formData">
-            <label for="last">Nom</label>
-            <input class="text-control" id="last" type="text" required aria-invalid="false"
-              aria-describedby="last-error">
-          </div>
-          <!-- Champ Email -->
-          <div class="formData">
-            <label for="email">Email</label>
-            <input class="text-control" id="email" type="email" required aria-invalid="false"
-              aria-describedby="email-error">
-          </div>
-          <!-- Champ Message -->
-          <div class="formData message-container">
-            <label for="message">Votre message</label>
-            <textarea class="text-control" id="message" required aria-invalid="false"
-              aria-describedby="message-error"></textarea>
-          </div>
-          <!-- Bouton d'envoi du formulaire -->
-          <button class="send-button" type="submit" aria-label="Ok, formulaire envoyé">Envoyer</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div id="image-carousel" class="image-carousel" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="carousel-prev" aria-label="Previous Image" tabindex="0">
-      <svg width="30" height="48" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M29.6399 42.36L11.3199 24L29.6399 5.64L23.9999 -2.46532e-07L-0.000107861 24L23.9999 48L29.6399 42.36Z"
-          fill="#911C1C" />
-      </svg>
-    </div>
-    <div class="carousel-next" aria-label="Next Image" tabindex="0">
-      <svg width="30" height="48" viewBox="0 0 30 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0.360108 5.64L18.6801 24L0.360107 42.36L6.00011 48L30.0001 24L6.00011 3.88195e-06L0.360108 5.64Z"
-          fill="#911C1C" />
-      </svg>
-    </div>
-    <div class="carousel-content">
-      <!-- Images will be added here -->
-    </div>
-    <div class="carousel-close" aria-label="Close Carousel" tabindex="0">
-      <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z"
-          fill="#911C1C" />
-      </svg>
-    </div>
-  </div>
-  <div class="overlay"></div>
-
-  <!-- Scripts -->
-  <script src="./scripts/profil.js" type="module"></script>
+    <!-- Scripts -->
+    <script src="./scripts/profil.js" type="module"></script>
 </body>
 
 </html>

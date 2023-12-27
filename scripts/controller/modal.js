@@ -1,10 +1,11 @@
+// functionModal.js
 import {
   validateName,
   validateEmail,
   validateMessage,
 } from "./functionModal.js";
 
-document.addEventListener("DOMContentLoaded", function () {
+export function setupContactForm() {
   const openModalBtn = document.querySelector(".contact_button");
   const closeModalBtn = document.querySelector(".modal-close-btn");
   const overlay = document.querySelector(".overlay");
@@ -74,4 +75,4 @@ document.addEventListener("DOMContentLoaded", function () {
       closeModal();
     }
   }
-});
+}

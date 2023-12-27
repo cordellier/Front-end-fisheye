@@ -2,7 +2,7 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     gap: 60px;
-    margin-top: 100px;
+    margin-top: 60px;
   }
   
   .photographer_section a {
@@ -89,17 +89,17 @@
   
 
 .photographer_section p:first-of-type {
-    font-size: 10px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 13px;
     letter-spacing: 0em;
     text-align: center;
-    padding-top: 1px;
-    padding-bottom: 2px;
+    padding-top: 5px;
+    padding-bottom: 8px;
 }
 
 .photographer_section p:nth-of-type(2) {
-    font-size: 9px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 12px;
     letter-spacing: 0em;

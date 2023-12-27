@@ -148,6 +148,8 @@
 .dropdown_content li button {
     width: 100%;
     text-align: left;
+    background-color: $color-burgundy;
+    border: none;
 }
 
 .dropdown_content li button:hover,
