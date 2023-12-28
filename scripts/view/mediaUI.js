@@ -1,4 +1,4 @@
-export function renderImage(data) {
+function renderImage(data) {
   const { photographerId, title, image, likes } = data;
 
   return `
@@ -21,7 +21,7 @@ export function renderImage(data) {
         </section>`;
 }
 
-export function renderVideo(data) {
+function renderVideo(data) {
   const { title, video, likes, photographerId } = data;
   return `
         <section class="gallery">

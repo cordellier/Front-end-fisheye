@@ -18,12 +18,49 @@ export function setupContactForm() {
     modal.style.display = "block";
     document.body.style.overflow = "hidden";
     overlay.style.display = "block";
+
+    // Focus sur le premier élément du modal
+    const firstFocusableElement = modal.querySelector(
+      "input, textarea, button"
+    );
+    if (firstFocusableElement) {
+      firstFocusableElement.focus();
+    }
+
+    // Gestion du focus trap
+    modal.addEventListener("keydown", trapFocus);
   }
 
   function closeModal() {
     modal.style.display = "none";
     document.body.style.overflow = "auto";
     overlay.style.display = "none";
+
+    // Supprimez l'écouteur d'événements pour le focus trap
+    modal.removeEventListener("keydown", trapFocus);
+  }
+
+  function trapFocus(e) {
+    const focusableElements = modal.querySelectorAll("input, textarea, button");
+    const firstFocusableElement = focusableElements[0];
+    const lastFocusableElement =
+      focusableElements[focusableElements.length - 1];
+
+    if (e.key === "Tab") {
+      if (e.shiftKey) {
+        // Shift + Tab
+        if (document.activeElement === firstFocusableElement) {
+          e.preventDefault();
+          lastFocusableElement.focus();
+        }
+      } else {
+        // Tab
+        if (document.activeElement === lastFocusableElement) {
+          e.preventDefault();
+          firstFocusableElement.focus();
+        }
+      }
+    }
   }
 
   document.addEventListener("keydown", (e) => {
@@ -39,13 +76,11 @@ export function setupContactForm() {
     validateForm();
   });
 
-  // FORM VALIDATION PROCESS
   const firstname = document.getElementById("first");
   const lastname = document.getElementById("last");
   const email = document.getElementById("email");
   const message = document.getElementById("message");
 
-  // EVENTS LISTENERS ON CHANGE
   firstname.addEventListener("input", () => validateName(firstname));
   lastname.addEventListener("input", () => validateName(lastname));
   email.addEventListener("input", () => validateEmail(email));
