@@ -646,4 +646,37 @@ figcaption div {
 
 .liked {
   color: #901C1C;
+}
+
+aside {
+  position: sticky;
+  bottom: 0;
+  left: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 20px;
+  height: 50px;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 20px;
+  background-color: #DB8876;
+}
+
+.footer-container {
+  position: fixed;
+  left: -311px;
+  bottom: 0;
+  width: 100%;
+  padding: 0px;
+  text-align: center;
+  z-index: 1000;
 }/*# sourceMappingURL=style_profil.css.map */

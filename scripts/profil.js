@@ -1,3 +1,4 @@
+// Importations
 import { getPhotographers } from "./utils/fetchJsonData.js";
 import { renderCard } from "./view/headerPhotographerUI.js";
 import { openCustomModal, closeModal } from "./utils/contactForm.js";
@@ -5,6 +6,7 @@ import { factoryMedia } from "./view/mediaUI.js";
 import { setupContactForm } from "./controller/modal.js";
 import { displayMediaWithFilter, openCloseFilterMenu } from "./utils/filter.js";
 
+// Écouteur d'événement pour la fin du chargement du DOM
 document.addEventListener("DOMContentLoaded", function () {
   setupContactForm();
 });
@@ -13,18 +15,27 @@ async function initPage() {
   // Récupérer l'id de l'url
   const searchParam = new URLSearchParams(window.location.search);
   const id = searchParam.get("id");
+
+  // Récupérer le photographe et afficher l'en-tête
   const photographe = await findPhotographe(Number.parseInt(id));
   const photographeHeader = renderCard(photographe);
   const baseView = document.querySelector(".photograph-content");
   baseView.innerHTML = photographeHeader;
+
   // Afficher l'ensemble des médias du photographe
   const medias = await findMediaByPhotographe(Number.parseInt(id));
-  console.log(medias);
   displayMedia(medias);
 
   // Ajout de la fonction de filtrage
   displayMediaWithFilter({ medias });
-  openCloseFilterMenu(); // Appel de la fonction pour ouvrir/fermer le menu de filtre
+  // Appel de la fonction pour ouvrir/fermer le menu de filtre
+  openCloseFilterMenu();
+
+  // Affichage du pied de page
+  const footerData = { price: photographe.price };
+  const footer = renderFooter(footerData);
+  const footerElement = document.querySelector(".footer-container");
+  footerElement.innerHTML = footer;
 }
 
 async function findPhotographe(id) {
@@ -51,15 +62,23 @@ function redirectToHome() {
 }
 
 // Écouteur d'événement pour le clic sur le logo
-document.querySelector(".logo").addEventListener("click", function () {
-  redirectToHome();
-});
+document.querySelector(".logo").addEventListener("click", redirectToHome);
 
 // Écouteur d'événement pour ouvrir et fermer le modal de contact
-document.getElementById("openButton").addEventListener("click", function () {
-  openCustomModal();
-});
+document
+  .getElementById("openButton")
+  .addEventListener("click", openCustomModal);
+document.getElementById("closeButton").addEventListener("click", closeModal);
 
-document.getElementById("closeButton").addEventListener("click", function () {
-  closeModal();
-});
+// Définition de la fonction renderFooter
+function renderFooter(data) {
+  const { price } = data;
+  return `
+    <aside>
+      <p class="photographer_Likes">
+        <span class="photographer_likes_count"></span>
+        <span class="fas fa-heart" aria-hidden="true"></span>
+      </p>
+      <span>${price}€ / jour</span>
+    </aside>`;
+}

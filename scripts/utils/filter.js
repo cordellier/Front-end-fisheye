@@ -68,9 +68,8 @@ export const displayMediaWithFilter = (mediasTemplate) => {
     }
 
     // Vérification de l'existence de la méthode avant de l'appeler
-    if (typeof mediasTemplate.createPhotographerMedias === "function") {
-      console.log("Appel de createPhotographerMedias");
-      mediasTemplate.createPhotographerMedias();
+    if (typeof mediasTemplate.factoryMedia === "function") {
+      mediasTemplate.factoryMedia();
     }
 
     const mediasfiltered = mediasTemplate;
