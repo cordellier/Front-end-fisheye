@@ -366,6 +366,18 @@ header .logo:active {
   max-height: 200px;
 }
 
+.rotate {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.animeCard {
+  -webkit-transition: -webkit-transform 0.3s ease-in-out;
+  transition: -webkit-transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+}
+
 .contact_button,
 .send-button {
   font-size: 18px;
@@ -576,11 +588,6 @@ form input {
   overflow: hidden;
 }
 
-.animeCard {
-  -webkit-animation: fade 0.2s ease-in-out;
-          animation: fade 0.2s ease-in-out;
-}
-
 a img {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -673,7 +680,7 @@ aside {
 
 .footer-container {
   position: fixed;
-  left: -311px;
+  left: -7.5%;
   bottom: 0;
   width: 100%;
   padding: 0px;

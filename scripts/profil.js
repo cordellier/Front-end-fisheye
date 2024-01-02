@@ -5,6 +5,7 @@ import { openCustomModal, closeModal } from "./utils/contactForm.js";
 import { factoryMedia } from "./view/mediaUI.js";
 import { setupContactForm } from "./controller/modal.js";
 import { displayMediaWithFilter, openCloseFilterMenu } from "./utils/filter.js";
+import { displayTotalLikes } from "./utils/likes.js";
 
 // Écouteur d'événement pour la fin du chargement du DOM
 document.addEventListener("DOMContentLoaded", function () {
@@ -30,6 +31,9 @@ async function initPage() {
   displayMediaWithFilter({ medias });
   // Appel de la fonction pour ouvrir/fermer le menu de filtre
   openCloseFilterMenu();
+
+  // Appel de la fonction pour afficher le total des likes
+  displayTotalLikes(medias);
 
   // Affichage du pied de page
   const footerData = { price: photographe.price };

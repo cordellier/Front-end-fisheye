@@ -70,7 +70,8 @@
     align-self: center;
     position: absolute;
     right: 50px;
-} 
+}
+
 .photographer_card {
     margin-top: 50px;
 }
@@ -90,7 +91,7 @@
 }
 
 
-.filter_section{
+.filter_section {
     position: relative;
     height: 100%;
 }
@@ -102,7 +103,7 @@
     overflow: hidden;
 }
 
-.rotate{
+.rotate {
     transform: rotate(180deg);
 }
 
@@ -117,7 +118,7 @@
     width: 150px;
 }
 
-.dropdown_content li::before{
+.dropdown_content li::before {
     content: "";
     position: absolute;
     top: 0px;
@@ -129,7 +130,7 @@
 }
 
 .btn_drop,
-.dropdown_content li button{
+.dropdown_content li button {
     height: 50px;
     padding: 15px;
     font-size: 18px;
@@ -155,7 +156,7 @@
 .dropdown_content li button:hover,
 .dropdown_content li button:focus,
 .btn_drop:hover,
-.btn_drop:focus{
+.btn_drop:focus {
     background-color: $color-salmon;
     color: black;
     cursor: pointer;
@@ -163,4 +164,13 @@
 
 .curtain_effect {
     max-height: 200px;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+.animeCard {
+    transition: transform 0.3s ease-in-out;
+
 }

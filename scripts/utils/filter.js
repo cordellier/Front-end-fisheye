@@ -8,6 +8,7 @@ export const openCloseFilterMenu = () => {
       filterMenuButton.getAttribute("aria-expanded") === "true" || false;
     filterMenuButton.setAttribute("aria-expanded", !isExpanded);
     filterMenu.classList.toggle("curtain_effect");
+
     document.querySelector(".fa-chevron-up").classList.toggle("rotate");
 
     const newAriaHiddenValue = filterMenu.classList.contains("curtain_effect")
@@ -33,47 +34,52 @@ export const displayMediaWithFilter = (mediasTemplate) => {
   let filterAlreadySelected = allFilters.find(
     (filter) => filter.textContent == currentFilter.textContent
   );
-  filterAlreadySelected.style.display = "none";
+
+  if (filterAlreadySelected) {
+    filterAlreadySelected.style.display = "none";
+  }
 
   allFilters.forEach((filter) => {
     filter.addEventListener("click", () => {
       currentFilter.textContent = filter.textContent;
-      if (filterAlreadySelected) filterAlreadySelected.style.display = "block";
+
+      if (filterAlreadySelected) {
+        filterAlreadySelected.style.display = "block";
+      }
 
       filterAlreadySelected = filter;
       filterAlreadySelected.style.display = "none";
 
-      sortByFilter(filter.textContent);
+      sortByFilter(filter.textContent, mediasTemplate);
     });
   });
 
-  const sortByFilter = (filterValue) => {
+  const sortByFilter = (filterValue, mediasTemplate) => {
+    console.log("Application du filtre :", filterValue);
     switch (filterValue) {
       case "Titre":
-        console.log("Tri par Titre");
+        console.log("Tri par Titre...");
         mediasTemplate.medias.sort((a, b) => a.title.localeCompare(b.title));
         break;
       case "Popularité":
-        console.log("Tri par Popularité");
+        console.log("Tri par Popularité...");
         mediasTemplate.medias.sort((a, b) => b.likes - a.likes);
         break;
       case "Date":
-        console.log("Tri par Date");
+        console.log("Tri par Date...");
         mediasTemplate.medias.sort(
           (a, b) => new Date(b.date) - new Date(a.date)
         );
         break;
       default:
-        console.log("Aucun tri spécifié");
+        console.log("Aucun tri spécifique spécifié.");
     }
 
-    // Vérification de l'existence de la méthode avant de l'appeler
+    console.log("Médias triés :", mediasTemplate.medias);
+
     if (typeof mediasTemplate.factoryMedia === "function") {
       mediasTemplate.factoryMedia();
     }
-
-    const mediasfiltered = mediasTemplate;
-    console.log("Médias filtrés:", mediasfiltered);
 
     const mediaElements = document.querySelectorAll(".gallery_card");
     mediaElements.forEach((media, index) => {
