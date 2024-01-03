@@ -3,15 +3,37 @@ import { getPhotographers } from "./utils/fetchJsonData.js";
 import { renderCard } from "./view/headerPhotographerUI.js";
 import { openCustomModal, closeModal } from "./utils/contactForm.js";
 import { factoryMedia } from "./view/mediaUI.js";
-import { setupContactForm } from "./controller/modal.js";
 import { displayMediaWithFilter, openCloseFilterMenu } from "./utils/filter.js";
 import { calculateTotalLikes, updateTotalLikes } from "./utils/likes.js";
 
-// Écouteur d'événement pour la fin du chargement du DOM
-document.addEventListener("DOMContentLoaded", function () {
-  setupContactForm();
-  console.log("Le DOM est chargé");
-});
+// Fonction pour gérer les clics sur les boutons de like
+function handleLikeButtonClick() {
+  console.log("Fonction handleLikeButtonClick appelée");
+  const likeButtons = document.querySelectorAll(".btn_like");
+  console.log(`Nombre de boutons de like trouvés : ${likeButtons.length}`);
+
+  likeButtons.forEach((btn) => {
+    btn.addEventListener("click", function () {
+      console.log("Bouton de like cliqué");
+      const dataId = btn.getAttribute("data-id");
+      console.log(`ID de données du bouton : ${dataId}`);
+      const likeElement = document.querySelector(`.nLike[data-id="${dataId}"]`);
+      console.log("likeElement : ", likeElement);
+
+      if (likeElement) {
+        console.log("Element .nLike trouvé");
+        let likes = parseInt(likeElement.textContent, 10);
+        if (!isNaN(likes)) {
+          likes += 1;
+          likeElement.textContent = likes;
+          btn.classList.add("liked");
+        }
+      } else {
+        console.log("Element .nLike non trouvé");
+      }
+    });
+  });
+}
 
 async function initPage() {
   // Récupérer l'id de l'url
@@ -30,12 +52,12 @@ async function initPage() {
 
   // Ajout de la fonction de filtrage
   displayMediaWithFilter({ medias });
+
   // Appel de la fonction pour ouvrir/fermer le menu de filtre
   openCloseFilterMenu();
+
   // Calculer le total des "likes"
   calculateTotalLikes();
-  // Mettre à jour l'affichage du total des "likes"
-  updateTotalLikes();
 
   // Affichage du pied de page
   const footerData = { price: photographe.price };
@@ -47,9 +69,14 @@ async function initPage() {
   const totalLikesContainer = document.querySelector(".total-likes");
   if (totalLikesContainer) {
     console.log("L'élément .total-likes est présent dans le DOM");
+    // Mettre à jour l'affichage du total des "likes"
+    updateTotalLikes();
   } else {
     console.log("L'élément .total-likes n'est pas trouvé dans le DOM");
   }
+
+  // Appel de la fonction pour gérer les clics sur les boutons de like
+  handleLikeButtonClick();
 }
 
 async function findPhotographe(id) {
