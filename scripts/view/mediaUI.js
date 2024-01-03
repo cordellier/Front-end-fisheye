@@ -13,7 +13,7 @@ function renderImage(data) {
             <h2>${title}</h2>
               <div role="group" aria-label="Like button and number of likes">
               <span class="nLike">${likes}</span>
-                <button class="btn_like" type="button" arial-label="like">
+              <button class="btn_like" type="button" data-id="${data.id}" aria-label="like">
                   <span class="fa-solid fa-heart" aria-hidden="true"></span>
                 </button>
               </div>
@@ -35,7 +35,7 @@ function renderVideo(data) {
             <h2>${title}</h2>
               <div role="group" aria-label="Like button and number of likes">
                 <span class="nLike">${likes}</span>
-                <button class="btn_like" type="button" aria-label="like">
+                <button class="btn_like" type="button" data-id="${data.id}" aria-label="like">
                   <span class="fa-solid fa-heart" aria-hidden="true"></span>
                 </button>
               </div>

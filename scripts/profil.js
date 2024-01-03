@@ -5,11 +5,12 @@ import { openCustomModal, closeModal } from "./utils/contactForm.js";
 import { factoryMedia } from "./view/mediaUI.js";
 import { setupContactForm } from "./controller/modal.js";
 import { displayMediaWithFilter, openCloseFilterMenu } from "./utils/filter.js";
-import { displayTotalLikes } from "./utils/likes.js";
+import { calculateTotalLikes, updateTotalLikes } from "./utils/likes.js";
 
 // Écouteur d'événement pour la fin du chargement du DOM
 document.addEventListener("DOMContentLoaded", function () {
   setupContactForm();
+  console.log("Le DOM est chargé");
 });
 
 async function initPage() {
@@ -31,15 +32,24 @@ async function initPage() {
   displayMediaWithFilter({ medias });
   // Appel de la fonction pour ouvrir/fermer le menu de filtre
   openCloseFilterMenu();
-
-  // Appel de la fonction pour afficher le total des likes
-  displayTotalLikes(medias);
+  // Calculer le total des "likes"
+  calculateTotalLikes();
+  // Mettre à jour l'affichage du total des "likes"
+  updateTotalLikes();
 
   // Affichage du pied de page
   const footerData = { price: photographe.price };
   const footer = renderFooter(footerData);
   const footerElement = document.querySelector(".footer-container");
   footerElement.innerHTML = footer;
+
+  // Vérifier la présence de l'élément .total-likes
+  const totalLikesContainer = document.querySelector(".total-likes");
+  if (totalLikesContainer) {
+    console.log("L'élément .total-likes est présent dans le DOM");
+  } else {
+    console.log("L'élément .total-likes n'est pas trouvé dans le DOM");
+  }
 }
 
 async function findPhotographe(id) {
@@ -78,7 +88,7 @@ document.getElementById("closeButton").addEventListener("click", closeModal);
 function renderFooter(data) {
   const { price } = data;
   return `
-    <aside>
+    <aside class="total-likes">
       <p class="photographer_Likes">
         <span class="photographer_likes_count"></span>
         <span class="fas fa-heart" aria-hidden="true"></span>

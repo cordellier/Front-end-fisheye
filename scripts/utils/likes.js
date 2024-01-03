@@ -1,26 +1,39 @@
-export const displayTotalLikes = async (medias) => {
-  const allBtnLike = document.querySelectorAll(".btn_like");
-  const likesElement = document.querySelector(".photographer_likes_count");
+export function calculateTotalLikes() {
+  const likeElements = document.querySelectorAll(".nLike");
+  let totalLikes = 0;
 
-  const updateTotalLikes = () => {
-    const totalLikes = medias.reduce((acc, media) => acc + media.likes, 0);
-    likesElement.textContent = `${totalLikes}`;
-  };
-
-  updateTotalLikes();
-
-  allBtnLike.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const media = medias.find((media) => media.id == btn.dataset.id);
-
-      !btn.classList.contains("liked") ? media.likes++ : media.likes--;
-
-      btn.classList.toggle("liked");
-
-      const likesElement = btn.previousElementSibling;
-      likesElement.textContent = `${media.likes}`;
-
-      updateTotalLikes();
-    });
+  likeElements.forEach((likeElement) => {
+    const likes = parseInt(likeElement.textContent, 10);
+    if (!isNaN(likes)) {
+      totalLikes += likes;
+    }
   });
-};
+
+  // Vérifier le calcul des likes
+  console.log(`Total des likes calculé : ${totalLikes}`);
+
+  return totalLikes;
+}
+
+export function updateTotalLikes() {
+  const totalLikes = calculateTotalLikes();
+  const totalLikesContainer = document.querySelector(".total-likes");
+
+  if (totalLikesContainer) {
+    const photographerLikesCount = totalLikesContainer.querySelector(
+      ".photographer_likes_count"
+    );
+    if (photographerLikesCount) {
+      console.log(
+        "L'élément .photographer_likes_count est présent dans l'élément .total-likes"
+      );
+      photographerLikesCount.textContent = totalLikes;
+    } else {
+      console.log(
+        "L'élément .photographer_likes_count n'est pas trouvé dans l'élément .total-likes"
+      );
+    }
+  } else {
+    console.log("L'élément .total-likes n'est pas trouvé");
+  }
+}
