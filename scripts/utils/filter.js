@@ -1,3 +1,6 @@
+import { displayMedia } from "../profil.js";
+import { handleLikeButtonClick } from "../profil.js";
+
 export const openCloseFilterMenu = () => {
   const filterMenu = document.querySelector(".dropdown_content");
   const filterMenuButton = document.querySelector(".btn_drop");
@@ -75,11 +78,7 @@ export const displayMediaWithFilter = (mediasTemplate) => {
         console.log("Aucun tri spécifique spécifié.");
     }
 
-    console.log("Médias triés :", mediasTemplate.medias);
-
-    if (typeof mediasTemplate.factoryMedia === "function") {
-      mediasTemplate.factoryMedia();
-    }
+    displayMedia(mediasTemplate.medias);
 
     const mediaElements = document.querySelectorAll(".gallery_card");
     mediaElements.forEach((media, index) => {
@@ -87,5 +86,8 @@ export const displayMediaWithFilter = (mediasTemplate) => {
         media.classList.add("animeCard");
       }, 100 * index);
     });
+
+    // Réinitialiser les écouteurs d'événements des boutons de like
+    handleLikeButtonClick();
   };
 };

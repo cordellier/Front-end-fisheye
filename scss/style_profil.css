@@ -464,6 +464,10 @@ header .logo:active {
   margin-left: -65px;
 }
 
+.modal-open {
+  overflow: hidden;
+}
+
 .firstname-container {
   padding-top: 20px;
 }
@@ -651,7 +655,7 @@ figcaption div {
   cursor: pointer;
 }
 
-.liked {
+.liked .fa-heart {
   color: #901C1C;
 }
 
