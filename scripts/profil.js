@@ -7,6 +7,11 @@ import { displayMediaWithFilter, openCloseFilterMenu } from "./utils/filter.js";
 import { calculateTotalLikes, updateTotalLikes } from "./utils/likes.js";
 import { setupContactForm } from "./controller/modal.js";
 
+/**
+ * Initialise la page principale.
+ *
+ * @returns {void}
+ */
 async function initPage() {
   // Récupérer l'id de l'url
   const searchParam = new URLSearchParams(window.location.search);
@@ -28,7 +33,7 @@ async function initPage() {
   openCloseFilterMenu();
   // Calculer le total des "likes"
   calculateTotalLikes();
-  // Focus Modal
+  // Focus
   setupContactForm();
 
   // Affichage du pied de page
@@ -51,16 +56,34 @@ async function initPage() {
   handleLikeButtonClick();
 }
 
+/**
+ * Recherche un photographe par son ID.
+ *
+ * @param {number} id - L'ID du photographe à rechercher.
+ * @returns {Promise<Object>} Les détails du photographe.
+ */
 async function findPhotographe(id) {
   const { photographers } = await getPhotographers();
   return photographers.find((p) => p.id === id);
 }
 
+/**
+ * Recherche tous les médias pour un photographe spécifique.
+ *
+ * @param {number} id - L'ID du photographe.
+ * @returns {Promise<Array>} Liste des médias du photographe.
+ */
 async function findMediaByPhotographe(id) {
   const { media } = await getPhotographers();
   return media.filter((m) => m.photographerId === id);
 }
 
+/**
+ * Affiche tous les médias dans une zone spécifique.
+ *
+ * @param {Array} listMedia - Liste des médias à afficher.
+ * @returns {void}
+ */
 export function displayMedia(listMedia) {
   const mediaZone = document.querySelector(".photo-grid");
   mediaZone.innerHTML = "";
@@ -84,6 +107,13 @@ document
 document.getElementById("closeButton").addEventListener("click", closeModal);
 
 // Définition de la fonction renderFooter
+/**
+ * Affiche le pied de page.
+ *
+ * @param {Object} data - Les données pour le pied de page.
+ * @param {number} data.price - Le prix du photographe.
+ * @returns {string} Le code HTML du pied de page.
+ */
 function renderFooter(data) {
   const { price } = data;
   return `
@@ -97,6 +127,11 @@ function renderFooter(data) {
 }
 
 // Fonction pour gérer les clics sur le bouton de like
+/**
+ * Gère les clics sur les boutons de like.
+ *
+ * @returns {void}
+ */
 export function handleLikeButtonClick() {
   console.log("Fonction handleLikeButtonClick appelée");
   const likeButtons = document.querySelectorAll(".btn_like");

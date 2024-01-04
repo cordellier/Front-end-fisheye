@@ -1,3 +1,10 @@
+/**
+ * Récupère les données des photographes à partir d'un fichier JSON.
+ *
+ * @async
+ * @returns {Promise<Object>} - Une promesse résolue avec les données des photographes.
+ * @throws {Error} - Une erreur si la récupération des données échoue.
+ */
 export async function getPhotographers() {
   try {
     const response = await fetch("../../data/photographer.json");

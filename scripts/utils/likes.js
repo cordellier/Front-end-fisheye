@@ -1,5 +1,10 @@
 // Dans utils/likes.js
 
+/**
+ * Calcule le nombre total de "likes" à partir des éléments avec la classe ".nLike".
+ *
+ * @returns {number} Le nombre total de "likes".
+ */
 export function calculateTotalLikes() {
   const likeElements = document.querySelectorAll(".nLike");
   let totalLikes = 0;
@@ -14,6 +19,11 @@ export function calculateTotalLikes() {
   return totalLikes;
 }
 
+/**
+ * Met à jour l'affichage du nombre total de "likes" dans l'élément .total-likes.
+ *
+ * @returns {void}
+ */
 export function updateTotalLikes() {
   const totalLikes = calculateTotalLikes();
   const totalLikesContainer = document.querySelector(".total-likes");

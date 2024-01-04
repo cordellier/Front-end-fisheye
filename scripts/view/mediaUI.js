@@ -1,3 +1,13 @@
+/**
+ * Rend une carte de média image avec les données fournies.
+ *
+ * @param {Object} data - Les données du média image.
+ * @param {number} data.photographerId - L'identifiant du photographe associé au média.
+ * @param {string} data.title - Le titre du média.
+ * @param {string} data.image - Le chemin vers l'image.
+ * @param {number} data.likes - Le nombre de likes du média.
+ * @returns {string} - Le HTML de la carte du média image.
+ */
 function renderImage(data) {
   const { photographerId, title, image, likes } = data;
 
@@ -21,6 +31,14 @@ function renderImage(data) {
         </section>`;
 }
 
+/**
+ * Fabrique une carte de média en fonction des données fournies (image ou vidéo).
+ *
+ * @param {Object} data - Les données du média.
+ * @param {string} data.image - Le chemin vers l'image.
+ * @param {string} data.video - Le chemin vers la vidéo.
+ * @returns {string} - Le HTML de la carte du média.
+ */
 function renderVideo(data) {
   const { title, video, likes, photographerId } = data;
   return `

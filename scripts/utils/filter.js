@@ -1,6 +1,11 @@
 import { displayMedia } from "../profil.js";
 import { handleLikeButtonClick } from "../profil.js";
 
+/**
+ * Gère l'ouverture et la fermeture du menu de filtre.
+ *
+ * @returns {void}
+ */
 export const openCloseFilterMenu = () => {
   const filterMenu = document.querySelector(".dropdown_content");
   const filterMenuButton = document.querySelector(".btn_drop");
@@ -28,6 +33,13 @@ export const openCloseFilterMenu = () => {
   });
 };
 
+/**
+ * Affiche les médias filtrés en fonction du filtre sélectionné.
+ *
+ * @param {Object} mediasTemplate - Le template des médias à afficher.
+ * @param {Array} mediasTemplate.medias - La liste des médias à afficher.
+ * @returns {void}
+ */
 export const displayMediaWithFilter = (mediasTemplate) => {
   const currentFilter = document.querySelector("#current_filter");
   const allFilters = Array.from(
@@ -57,6 +69,14 @@ export const displayMediaWithFilter = (mediasTemplate) => {
     });
   });
 
+  /**
+   * Trie les médias en fonction du filtre sélectionné.
+   *
+   * @param {string} filterValue - La valeur du filtre sélectionné.
+   * @param {Object} mediasTemplate - Le template des médias à trier.
+   * @param {Array} mediasTemplate.medias - La liste des médias à trier.
+   * @returns {void}
+   */
   const sortByFilter = (filterValue, mediasTemplate) => {
     console.log("Application du filtre :", filterValue);
     switch (filterValue) {

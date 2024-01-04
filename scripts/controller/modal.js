@@ -5,6 +5,11 @@ import {
   validateMessage,
 } from "./functionModal.js";
 
+/**
+ * Configure le formulaire de contact.
+ *
+ * @returns {void}
+ */
 export function setupContactForm() {
   const openModalBtn = document.querySelector(".contact_button");
   const closeModalBtn = document.querySelector(".modal-close-btn");
@@ -14,6 +19,11 @@ export function setupContactForm() {
   openModalBtn.addEventListener("click", displayModal);
   closeModalBtn.addEventListener("click", closeModal);
 
+  /**
+   * Affiche le modal de contact.
+   *
+   * @returns {void}
+   */
   function displayModal() {
     modal.style.display = "block";
     document.body.style.overflow = "hidden";
@@ -31,6 +41,11 @@ export function setupContactForm() {
     modal.addEventListener("keydown", trapFocus);
   }
 
+  /**
+   * Ferme le modal de contact.
+   *
+   * @returns {void}
+   */
   function closeModal() {
     modal.style.display = "none";
     document.body.style.overflow = "auto";
@@ -40,6 +55,12 @@ export function setupContactForm() {
     modal.removeEventListener("keydown", trapFocus);
   }
 
+  /**
+   * Piège le focus à l'intérieur du modal de contact.
+   *
+   * @param {Event} e - L'événement de touche.
+   * @returns {void}
+   */
   function trapFocus(e) {
     const focusableElements = modal.querySelectorAll("input, textarea, button");
     const firstFocusableElement = focusableElements[0];
@@ -86,6 +107,11 @@ export function setupContactForm() {
   email.addEventListener("input", () => validateEmail(email));
   message.addEventListener("input", () => validateMessage(message));
 
+  /**
+   * Valide le formulaire de contact.
+   *
+   * @returns {void}
+   */
   function validateForm() {
     const isFirstNameValid = validateName(firstname);
     const isLastNameValid = validateName(lastname);
