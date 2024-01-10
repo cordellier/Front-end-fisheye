@@ -6,6 +6,7 @@ import { factoryMedia } from "./view/mediaUI.js";
 import { displayMediaWithFilter, openCloseFilterMenu } from "./utils/filter.js";
 import { calculateTotalLikes, updateTotalLikes } from "./utils/likes.js";
 import { setupContactForm } from "./controller/modal.js";
+import { displayLightbox } from "./utils/lightbox.js";
 
 /**
  * Initialise la page principale.
@@ -35,7 +36,6 @@ async function initPage() {
   calculateTotalLikes();
   // Focus
   setupContactForm();
-
   // Affichage du pied de page
   const footerData = { price: photographe.price };
   const footer = renderFooter(footerData);
@@ -52,6 +52,7 @@ async function initPage() {
     console.log("L'élément .total-likes n'est pas trouvé dans le DOM");
   }
 
+  displayLightbox({ medias });
   // Appel de la fonction pour gérer les clics sur les boutons de like
   handleLikeButtonClick();
 }
