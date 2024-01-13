@@ -18,15 +18,6 @@ export const displayLightbox = (medias) => {
   const lightboxMedia = document.querySelector(".lightbox__container");
   const mediaProvider = Array.from(document.querySelectorAll(".gallery_card"));
 
-  console.log(
-    "Element: ",
-    lightboxWrapper,
-    btnClose,
-    btnPrevious,
-    btnNext,
-    lightboxMedia
-  );
-
   // Initialisation des variables
   const photographer = medias.photographer;
   const mediasList = medias.medias;
@@ -38,26 +29,49 @@ export const displayLightbox = (medias) => {
       const mediaId = media.dataset.media;
       const mediaIndex = mediasList.findIndex((media) => media.id == mediaId);
       currentIndex = mediaIndex;
+
       lightboxWrapper.style.display = "flex";
+
       btnClose.focus();
       lightboxTemplate();
     });
   });
 
+  // Événement de transition pour détecter le moment où la lightbox est ouverte
+  lightboxWrapper.addEventListener("transitionend", () => {
+    // Appel à lightboxTemplate() seulement après que la lightbox est ouverte
+    lightboxTemplate();
+  });
+
   // Fonction pour générer le template du média actuel
   const lightboxTemplate = () => {
     const currentMedia = mediasList[currentIndex];
-    // Génération du contenu HTML en fonction du type de média (image ou vidéo)
-    lightboxMedia.innerHTML = `
-    ${
-      currentMedia.image
-        ? `
-    <img src="assets/images/photographers/samplePhotos-Medium/${photographer.name}/${currentMedia.image}" alt="${currentMedia.alt}">`
-        : `<video controls aria-label="${currentMedia.alt}"><source src="assets/images/photographers/samplePhotos-Medium/${photographer.name}/${currentMedia.video}" type="video/mp4"></video>`
-    }
 
-    <figcaption>${currentMedia.title}</figcaption>
-`;
+    // Assurez-vous que l'objet currentMedia est défini
+    if (currentMedia) {
+      const imagePath = `assets/images/photographers/samplePhotos-Medium/${currentMedia.photographerId}/${currentMedia.image}`;
+      const videoPath = currentMedia.video
+        ? `assets/images/photographers/samplePhotos-Medium/${currentMedia.photographerId}/${currentMedia.video}`
+        : null;
+
+      console.log("Chemin de l'image :", imagePath);
+      console.log("Chemin de la vidéo :", videoPath);
+
+      // Génération du contenu HTML en fonction du type de média (image ou vidéo)
+      lightboxMedia.innerHTML = `
+        ${
+          currentMedia.image
+            ? `<img src="${imagePath}" alt="${currentMedia.alt}">`
+            : videoPath
+            ? `<video controls aria-label="${currentMedia.alt}"><source src="${videoPath}" type="video/mp4"></video>`
+            : ""
+        }
+  
+        <figcaption>${currentMedia.title}</figcaption>
+      `;
+    } else {
+      console.error("Média actuel non défini dans lightboxTemplate");
+    }
   };
 
   // Fonction pour fermer la lightbox

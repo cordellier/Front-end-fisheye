@@ -5,19 +5,46 @@ import {
   validateMessage,
 } from "./functionModal.js";
 
+let modal;
+let overlay;
+
 /**
  * Configure le formulaire de contact.
  *
  * @returns {void}
  */
 export function setupContactForm() {
+  modal = document.getElementById("contact_modal");
+  overlay = document.querySelector(".overlay");
+
   const openModalBtn = document.querySelector(".contact_button");
   const closeModalBtn = document.querySelector(".modal-close-btn");
-  const overlay = document.querySelector(".overlay");
-  const modal = document.getElementById("contact_modal");
 
   openModalBtn.addEventListener("click", displayModal);
   closeModalBtn.addEventListener("click", closeModal);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && modal.style.display === "block") {
+      closeModal();
+    }
+  });
+
+  const form = document.getElementById("contact-form");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    validateForm();
+  });
+
+  const firstname = document.getElementById("first");
+  const lastname = document.getElementById("last");
+  const email = document.getElementById("email");
+  const message = document.getElementById("message");
+
+  firstname.addEventListener("input", () => validateName(firstname));
+  lastname.addEventListener("input", () => validateName(lastname));
+  email.addEventListener("input", () => validateEmail(email));
+  message.addEventListener("input", () => validateMessage(message));
 
   /**
    * Affiche le modal de contact.
@@ -26,6 +53,7 @@ export function setupContactForm() {
    */
   function displayModal() {
     modal.style.display = "block";
+    document.getElementById("first").focus();
     document.body.style.overflow = "hidden";
     overlay.style.display = "block";
 
@@ -39,6 +67,14 @@ export function setupContactForm() {
 
     // Gestion du focus trap
     modal.addEventListener("keydown", trapFocus);
+
+    // Ajout du focus au champ de prénom avec un délai de 100ms
+    setTimeout(() => {
+      const firstNameInput = document.getElementById("first");
+      if (firstNameInput) {
+        firstNameInput.focus();
+      }
+    }, 100);
   }
 
   /**
@@ -47,12 +83,14 @@ export function setupContactForm() {
    * @returns {void}
    */
   function closeModal() {
-    modal.style.display = "none";
-    document.body.style.overflow = "auto";
-    overlay.style.display = "none";
+    if (modal) {
+      modal.style.display = "none";
+      document.body.style.overflow = "auto";
+      overlay.style.display = "none";
 
-    // Supprimez l'écouteur d'événements pour le focus trap
-    modal.removeEventListener("keydown", trapFocus);
+      // Supprimez l'écouteur d'événements pour le focus trap
+      modal.removeEventListener("keydown", trapFocus);
+    }
   }
 
   /**
@@ -83,29 +121,6 @@ export function setupContactForm() {
       }
     }
   }
-
-  document.addEventListener("keydown", (e) => {
-    if (e.key === "Escape" && modal.style.display === "block") {
-      closeModal();
-    }
-  });
-
-  const form = document.getElementById("contact-form");
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    validateForm();
-  });
-
-  const firstname = document.getElementById("first");
-  const lastname = document.getElementById("last");
-  const email = document.getElementById("email");
-  const message = document.getElementById("message");
-
-  firstname.addEventListener("input", () => validateName(firstname));
-  lastname.addEventListener("input", () => validateName(lastname));
-  email.addEventListener("input", () => validateEmail(email));
-  message.addEventListener("input", () => validateMessage(message));
 
   /**
    * Valide le formulaire de contact.

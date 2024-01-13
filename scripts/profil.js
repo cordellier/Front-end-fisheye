@@ -8,6 +8,10 @@ import { calculateTotalLikes, updateTotalLikes } from "./utils/likes.js";
 import { setupContactForm } from "./controller/modal.js";
 import { displayLightbox } from "./utils/lightbox.js";
 
+const lightboxWrapper = document.querySelector(".lightbox");
+// Lorsque vous souhaitez fermer la lightbox
+lightboxWrapper.classList.remove("visible");
+
 /**
  * Initialise la page principale.
  *
@@ -34,7 +38,7 @@ async function initPage() {
   openCloseFilterMenu();
   // Calculer le total des "likes"
   calculateTotalLikes();
-  // Focus
+  // Focus sur le modal
   setupContactForm();
   // Affichage du pied de page
   const footerData = { price: photographe.price };
@@ -45,14 +49,11 @@ async function initPage() {
   // Vérifier la présence de l'élément .total-likes
   const totalLikesContainer = document.querySelector(".total-likes");
   if (totalLikesContainer) {
-    console.log("L'élément .total-likes est présent dans le DOM");
     // Mettre à jour l'affichage du total des "likes"
     updateTotalLikes();
-  } else {
-    console.log("L'élément .total-likes n'est pas trouvé dans le DOM");
   }
 
-  displayLightbox({ medias });
+  displayLightbox({ photographer: photographe, medias });
   // Appel de la fonction pour gérer les clics sur les boutons de like
   handleLikeButtonClick();
 }
@@ -134,9 +135,7 @@ function renderFooter(data) {
  * @returns {void}
  */
 export function handleLikeButtonClick() {
-  console.log("Fonction handleLikeButtonClick appelée");
   const likeButtons = document.querySelectorAll(".btn_like");
-  console.log(`Nombre de boutons de like trouvés : ${likeButtons.length}`);
 
   // Récupérer les ID des éléments déjà aimés
   const likedItems = JSON.parse(localStorage.getItem("likedItems")) || [];
@@ -150,10 +149,7 @@ export function handleLikeButtonClick() {
     }
 
     btn.addEventListener("click", function () {
-      console.log("Bouton de like cliqué");
-
       const likeElement = document.querySelector(`[data-id="${dataId}"]`);
-      console.log("likeElement : ", likeElement);
 
       if (likeElement) {
         const spanLike = likeElement.previousElementSibling;
@@ -185,8 +181,6 @@ export function handleLikeButtonClick() {
           // Mettre à jour le total des likes après avoir modifié un like
           updateTotalLikes();
         }
-      } else {
-        console.log("Element .nLike non trouvé");
       }
     });
   });
