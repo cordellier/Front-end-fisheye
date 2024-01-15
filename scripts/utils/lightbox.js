@@ -1,3 +1,5 @@
+import { simpleMediaNode } from "../view/mediaUI.js";
+
 /**
  * Affiche et gère la lightbox pour la visualisation des médias.
  *
@@ -30,6 +32,11 @@ export const displayLightbox = (medias) => {
       const mediaIndex = mediasList.findIndex((media) => media.id == mediaId);
       currentIndex = mediaIndex;
 
+      // Crée un overlay pour l'arrière-plan
+      const overlay = document.createElement("div");
+      overlay.classList.add("lightbox-overlay");
+      document.body.appendChild(overlay);
+
       lightboxWrapper.style.display = "flex";
 
       btnClose.focus();
@@ -46,29 +53,11 @@ export const displayLightbox = (medias) => {
   // Fonction pour générer le template du média actuel
   const lightboxTemplate = () => {
     const currentMedia = mediasList[currentIndex];
-
-    // Assurez-vous que l'objet currentMedia est défini
+    // S'assure que l'objet currentMedia est défini
     if (currentMedia) {
-      const imagePath = `assets/images/photographers/samplePhotos-Medium/${currentMedia.photographerId}/${currentMedia.image}`;
-      const videoPath = currentMedia.video
-        ? `assets/images/photographers/samplePhotos-Medium/${currentMedia.photographerId}/${currentMedia.video}`
-        : null;
-
-      console.log("Chemin de l'image :", imagePath);
-      console.log("Chemin de la vidéo :", videoPath);
-
+      const mediaType = currentMedia.image ? "image" : "video";
       // Génération du contenu HTML en fonction du type de média (image ou vidéo)
-      lightboxMedia.innerHTML = `
-        ${
-          currentMedia.image
-            ? `<img src="${imagePath}" alt="${currentMedia.alt}">`
-            : videoPath
-            ? `<video controls aria-label="${currentMedia.alt}"><source src="${videoPath}" type="video/mp4"></video>`
-            : ""
-        }
-  
-        <figcaption>${currentMedia.title}</figcaption>
-      `;
+      lightboxMedia.innerHTML = simpleMediaNode(currentMedia);
     } else {
       console.error("Média actuel non défini dans lightboxTemplate");
     }
@@ -76,6 +65,12 @@ export const displayLightbox = (medias) => {
 
   // Fonction pour fermer la lightbox
   const closeLightbox = () => {
+    // Supprime l'overlay pour l'arrière-plan
+    const overlay = document.querySelector(".lightbox-overlay");
+    if (overlay) {
+      overlay.parentNode.removeChild(overlay);
+    }
+
     lightboxWrapper.style.display = "none";
     lightboxMedia.innerHTML = "";
   };
@@ -101,18 +96,50 @@ export const displayLightbox = (medias) => {
     setTimeout(() => btn.classList.remove("active"), 100);
   };
 
+  // Événement de gestion du focus pour la navigation avec la tabulation
+  lightboxWrapper.addEventListener("keydown", (e) => {
+    if (e.key === "Tab") {
+      e.preventDefault(); // Empêche le comportement par défaut de la tabulation
+
+      // Détermine les éléments focusables à l'intérieur de la lightbox
+      const focusableElements = lightboxWrapper.querySelectorAll(
+        "input, textarea, button, [tabindex]:not([tabindex='-1'])"
+      );
+      const totalFocusableElements = focusableElements.length;
+
+      if (totalFocusableElements > 1) {
+        let currentIndex = Array.from(focusableElements).indexOf(
+          document.activeElement
+        );
+
+        // Détermine la direction de la tabulation
+        const shiftTab = e.shiftKey;
+
+        // Met à jour l'index en fonction de la direction de la tabulation
+        currentIndex = shiftTab
+          ? (currentIndex - 1 + totalFocusableElements) % totalFocusableElements
+          : (currentIndex + 1) % totalFocusableElements;
+
+        // Applique le focus à l'élément approprié
+        focusableElements[currentIndex].focus();
+      }
+    }
+  });
+
   // Écouteurs d'événements pour la navigation au clavier
-  document.addEventListener("keyup", (e) => {
-    switch (e.key) {
-      case "Escape":
-        closeLightbox();
-        break;
-      case "ArrowLeft":
-        previousMedia();
-        break;
-      case "ArrowRight":
-        nextMedia();
-        break;
+  window.addEventListener("keydown", (e) => {
+    if (lightboxWrapper.style.display === "flex") {
+      switch (e.key) {
+        case "Escape":
+          closeLightbox();
+          break;
+        case "ArrowLeft":
+          previousMedia();
+          break;
+        case "ArrowRight":
+          nextMedia();
+          break;
+      }
     }
   });
 

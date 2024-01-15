@@ -55,7 +55,10 @@ export function setupContactForm() {
     modal.style.display = "block";
     document.getElementById("first").focus();
     document.body.style.overflow = "hidden";
-    overlay.style.display = "block";
+    // Créez un élément overlay et ajoutez-le au body
+    const overlayDiv = document.createElement("div");
+    overlayDiv.classList.add("overlay");
+    document.body.appendChild(overlayDiv);
 
     // Focus sur le premier élément du modal
     const firstFocusableElement = modal.querySelector(
@@ -86,7 +89,11 @@ export function setupContactForm() {
     if (modal) {
       modal.style.display = "none";
       document.body.style.overflow = "auto";
-      overlay.style.display = "none";
+      // Supprime l'élément overlay du body
+      const overlayDiv = document.querySelector(".overlay");
+      if (overlayDiv) {
+        document.body.removeChild(overlayDiv);
+      }
 
       // Supprimez l'écouteur d'événements pour le focus trap
       modal.removeEventListener("keydown", trapFocus);
@@ -106,21 +113,29 @@ export function setupContactForm() {
       focusableElements[focusableElements.length - 1];
 
     if (e.key === "Tab") {
-      if (e.shiftKey) {
-        // Shift + Tab
-        if (document.activeElement === firstFocusableElement) {
-          e.preventDefault();
-          lastFocusableElement.focus();
+      if (focusableElements.length > 1) {
+        if (e.shiftKey) {
+          // Shift + Tab
+          if (document.activeElement === firstFocusableElement) {
+            e.preventDefault();
+            lastFocusableElement.focus();
+          }
+        } else {
+          // Tab
+          if (document.activeElement === lastFocusableElement) {
+            e.preventDefault();
+            firstFocusableElement.focus();
+          }
         }
       } else {
-        // Tab
-        if (document.activeElement === lastFocusableElement) {
-          e.preventDefault();
-          firstFocusableElement.focus();
-        }
+        // Si le modal n'a qu'un élément focusable, forcez le focus sur cet élément
+        e.preventDefault();
+        firstFocusableElement.focus();
       }
     }
   }
+
+  modal.addEventListener("keydown", trapFocus);
 
   /**
    * Valide le formulaire de contact.

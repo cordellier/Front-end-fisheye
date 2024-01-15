@@ -1,14 +1,16 @@
 .lightbox.wrapper {
   display: none;
   position: fixed;
+  align-content: center;
   top: 0;
   left: 0;
-  width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, .2);
+  background-color: white;
   z-index: 999;
-  overflow: auto;
   animation: lightboxIn 0.5s;
+  max-width: 1050px;
+  transform: translateY(20);
+  margin-left: 450px;
 }
 
 .lightbox.wrapper .lightbox__next,
@@ -19,7 +21,7 @@
   height: 52px;
   position: fixed;
   top: 50%;
-  right: 200px;
+  right: 500px;
   margin-top: -14px;
   z-index: 1000;
   cursor: pointer;
@@ -27,7 +29,7 @@
 
 .lightbox.wrapper .lightbox__prev {
   right: auto;
-  left: 200px;
+  left: 500px;
   transform: rotate(180deg);
 }
 
@@ -37,43 +39,51 @@
   height: 72px;
   background: url('../../assets/images/cross.svg') center center / 72px 72px no-repeat transparent;
   position: fixed;
-  top: 20px;
-  right: 180px;
+  top: 100px;
+  right: 480px;
   cursor: pointer;
   z-index: 1001;
 }
 
 .lightbox.wrapper button {
-  opacity: .5;
+  opacity: 1;
   cursor: pointer;
   transition: opacity 0.3s;
   text-indent: -10000px;
 }
 
 .lightbox.wrapper button:hover {
-  opacity: 1;
+  opacity: 0.5;
 }
 
 .lightbox.wrapper .lightbox__container img {
   max-width: 100%;
-  height: auto;
-  animation: lightboxIn 0.5s;
-}
-
-.lightbox.wrapper .lightbox__container {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-  min-height: 100vh;
+  margin-top: 50px;
 }
 
 .lightbox__container {
   display: flex;
   align-content: center;
   justify-content: center;
-  margin-left: 400px;
+  flex-direction: column;
+  margin-left: 300px;
   margin-right: 300px;
   min-height: 100vh;
+}
+
+.lightbox__container img,
+.lightbox__container video {
+  object-fit: cover;
+  width: 100%;
+  height: calc(100% - 50px);
+}
+
+.lightbox__container figcaption {
+  color: #901C1C;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .lightbox.wrapper .lightbox__loader {
@@ -86,4 +96,15 @@
 @keyframes lightboxIn {
   from {opacity: 0;}
   to {opacity: 1;}
+}
+
+/* Style pour l'arrière-plan gris lorsque la lightbox est ouverte */
+.lightbox-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Couleur grise semi-transparente */
+  z-index: 1;
 }
