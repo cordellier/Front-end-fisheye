@@ -35,3 +35,13 @@
   .logo:active {
     transform: scale(1.1);
   }
+
+  /* RESPONSIVE */
+@media screen and (max-width: 1040px) {
+  header{
+      flex-direction: column;
+  }
+  .main_photographers article {
+      width: 45%;
+  }
+}

@@ -13,9 +13,11 @@
 @import './layout/header';
 @import './layout/main';
 
-// Imprt Components SCSS
+// Import Components SCSS
 @import './components/photographer';
 @import './components/button';
 @import './components/modal';
 
+// Import Utils SCSS
+@import './utils/media-queries'
 

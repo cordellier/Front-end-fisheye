@@ -1,0 +1,134 @@
+/* RESPONSIVE MAIN PAGE */
+@media screen and (max-width: 1270px) {
+    .photographer_section article h2 {
+        font-size: 25px;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    .photographer_section {
+      grid-template-columns: 1fr 1fr;
+    }
+  
+    .photographer_section article {
+      width: 100%;
+    }
+
+    header .logo {
+        margin-right: 100px;
+        margin-top: 10px;
+    }
+    
+    header h1 {
+        margin-right: 0px;
+        margin-top: 10px;
+    }
+  }
+  
+  @media screen and (max-width: 725px) {
+    .photographer_section {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  /* RESPONSIVE PHOTOGRAPHER PAGE */
+  @media screen and (max-width: 1400px) {
+    #main {
+      padding: 0 20px;
+    }
+  
+    .photo-grid {
+      width: 100%; 
+      gap: 20px; 
+    }
+  
+    .photograph-header {
+      width: 100%; 
+    }
+  
+    .photograph-header h2 {
+      font-size: 32px;
+      top: 50px; 
+    }
+  
+    .photograph-header h3 {
+      font-size: 18px;
+      top: 130px;
+    }
+  
+    .photograph-header p {
+      font-size: 16px; 
+      top: 180px; 
+    }
+  
+    .photograph-header img {
+      height: 180px;
+    }
+  
+    .photograph-header .photographer_card {
+      height: 150px; 
+      width: 150px; 
+      right: 20px; 
+    }
+  
+    .photographer_card {
+      margin-top: 80px; 
+    }
+    
+  }
+  
+  /* Responsive jusqu'à 725px */
+  @media screen and (max-width: 725px) {
+    .photo-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+  
+    .photograph-header {
+      width: 100%; 
+    }
+  
+    .photograph-header h2 {
+      font-size: 28px;
+      top: 50px; 
+    }
+  
+    .photograph-header h3 {
+      font-size: 16px;
+      top: 120px; 
+    }
+  
+    .photograph-header p {
+      font-size: 14px;
+      top: 160px; 
+    }
+  
+    .photograph-header img {
+      height: 150px; 
+    }
+  
+    .photograph-header .photographer_card {
+      height: 120px;
+      width: 120px; 
+      right: 10px; 
+    }
+  
+    .photographer_card {
+      margin-top: 20px; 
+    }
+  }
+
+
+  /* RESPONSIVE LIGHTBOX */
+  @media screen and (max-width: 1700px) {
+    .lightbox.wrapper {
+        margin-left: 18%;
+    }
+  }
+
+  @media screen and (max-width: 1300px) {
+    .lightbox.wrapper {
+        margin-left: 10%;
+        padding: 10px 10px 0;
+        width: 80%;
+    }
+  }

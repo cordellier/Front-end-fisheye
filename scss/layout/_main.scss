@@ -49,7 +49,7 @@
 
 .photographer_section article h2 {
     color: $color-orange;
-    font-size: 36px;
+    font-size: 30px;
 }
 
 .photographer_section article h2:hover {
@@ -107,3 +107,12 @@
     color: $color-grey;
 }
 
+/* RESPONSIVE */
+@media screen and (max-width: 1040px) {
+  header{
+      flex-direction: column;
+  }
+  .main_photographers article {
+      width: 45%;
+  }
+}
