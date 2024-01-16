@@ -703,4 +703,7 @@ form input {
     padding: 10px 10px 0;
     width: 80%;
   }
+  .lightbox.wrapper .lightbox__close {
+    top: 0px;
+  }
 }/*# sourceMappingURL=style_index.css.map */

@@ -58,6 +58,30 @@ export const displayLightbox = (medias) => {
       const mediaType = currentMedia.image ? "image" : "video";
       // Génération du contenu HTML en fonction du type de média (image ou vidéo)
       lightboxMedia.innerHTML = simpleMediaNode(currentMedia);
+
+      // Si le média est une vidéo, tentez de démarrer la lecture automatique
+      if (mediaType === "video") {
+        const videoElement = lightboxMedia.querySelector("video");
+        if (videoElement) {
+          // Ajoute un attribut tabindex à l'élément de déclenchement de la vidéo
+          const playButton = lightboxMedia.querySelector(".play-button");
+          if (playButton) {
+            playButton.setAttribute("tabindex", "0");
+
+            // Gestionnaire d'événements pour la touche Entrée
+            playButton.addEventListener("keydown", (e) => {
+              if (e.key === "Enter") {
+                videoElement.play();
+              }
+            });
+
+            // Gestionnaire d'événements pour le clic
+            playButton.addEventListener("click", () => {
+              videoElement.play();
+            });
+          }
+        }
+      }
     } else {
       console.error("Média actuel non défini dans lightboxTemplate");
     }

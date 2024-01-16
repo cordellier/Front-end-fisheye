@@ -26,9 +26,10 @@
     overflow: hidden;
 }
 
-// .animeCard{
-//     animation: fade .2s ease-in-out;
-// }
+.gallery_card a:focus:not(:hover){
+    outline: 2px solid $color-salmon;
+}
+
 
 a img{
     transition: all .2s ease-in-out;

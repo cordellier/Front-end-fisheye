@@ -672,7 +672,8 @@ form input {
   opacity: 0.5;
 }
 
-.lightbox.wrapper .lightbox__container img {
+.lightbox.wrapper .lightbox__container img,
+.lightbox.wrapper .lightbox__container video {
   max-width: 100%;
   margin-top: 50px;
 }
@@ -779,6 +780,10 @@ img, video {
 .gallery_card a {
   border-radius: 5px;
   overflow: hidden;
+}
+
+.gallery_card a:focus:not(:hover) {
+  outline: 2px solid #DB8876;
 }
 
 a img {
@@ -924,7 +929,8 @@ figcaption div {
   opacity: 0.5;
 }
 
-.lightbox.wrapper .lightbox__container img {
+.lightbox.wrapper .lightbox__container img,
+.lightbox.wrapper .lightbox__container video {
   max-width: 100%;
   margin-top: 50px;
 }
@@ -1132,5 +1138,8 @@ aside {
     margin-left: 10%;
     padding: 10px 10px 0;
     width: 80%;
+  }
+  .lightbox.wrapper .lightbox__close {
+    top: 0px;
   }
 }/*# sourceMappingURL=style_profil.css.map */

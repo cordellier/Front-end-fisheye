@@ -92,7 +92,7 @@ export function simpleMediaNode(media) {
   if (mediaType === "image") {
     node = `<img src="${path}" alt="${title}">`;
   } else if (mediaType === "video") {
-    node = `<video controls aria-label="${title}"><source src="${path}" type="video/mp4"></video>`;
+    node = `<video tabindex="0" controls aria-label="${title}"><source src="${path}" type="video/mp4"></video>`;
   } else {
     node = "<span>Media inconnu</span>";
   }
