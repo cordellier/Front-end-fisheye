@@ -19,31 +19,36 @@ export const displayLightbox = (medias) => {
   const btnNext = document.querySelector(".lightbox__next");
   const lightboxMedia = document.querySelector(".lightbox__container");
   const mediaProvider = Array.from(document.querySelectorAll(".gallery_card"));
+  const containerMedia = document.querySelector(".photo-grid");
 
   // Initialisation des variables
   const photographer = medias.photographer;
   const mediasList = medias.medias;
   let currentIndex = 0;
 
-  // Ajout des écouteurs d'événements aux médias pour ouvrir la lightbox
-  mediaProvider.forEach((media) => {
-    media.addEventListener("click", () => {
-      const mediaId = media.dataset.media;
-      const mediaIndex = mediasList.findIndex((media) => media.id == mediaId);
-      currentIndex = mediaIndex;
-
-      // Crée un overlay pour l'arrière-plan
-      const overlay = document.createElement("div");
-      overlay.classList.add("lightbox-overlay");
-      document.body.appendChild(overlay);
-
-      lightboxWrapper.style.display = "flex";
-
-      btnClose.focus();
-      lightboxTemplate();
-    });
+  //Ajout des écouteurs d'événements aux médias pour ouvrir la lightbox
+  containerMedia.addEventListener("click", (event) => {
+    const target = event.target;
+    if (target.tagName.toLowerCase() === "img") {
+      const media = target.closest(".gallery_card");
+      if (media) {
+        handleClickOnMedia(media);
+      }
+    }
   });
 
+  function handleClickOnMedia(media) {
+    const mediaId = media.dataset.media;
+    const mediaIndex = mediasList.findIndex((media) => media.id == mediaId);
+    currentIndex = mediaIndex;
+    // Crée un overlay pour l'arrière-plan
+    const overlay = document.createElement("div");
+    overlay.classList.add("lightbox-overlay");
+    document.body.appendChild(overlay);
+    lightboxWrapper.style.display = "flex";
+    btnClose.focus();
+    lightboxTemplate();
+  }
   // Événement de transition pour détecter le moment où la lightbox est ouverte
   lightboxWrapper.addEventListener("transitionend", () => {
     // Appel à lightboxTemplate() seulement après que la lightbox est ouverte

@@ -4,7 +4,12 @@ import { renderCard } from "./view/headerPhotographerUI.js";
 import { openCustomModal, closeModal } from "./utils/contactForm.js";
 import { factoryMedia } from "./view/mediaUI.js";
 import { displayMediaWithFilter, openCloseFilterMenu } from "./utils/filter.js";
-import { calculateTotalLikes, updateTotalLikes } from "./utils/likes.js";
+import {
+  calculateLikes,
+  updateTotalLikes,
+  handleLikeButtonClick,
+  restoreLikes,
+} from "./utils/likes.js";
 import { setupContactForm } from "./controller/modal.js";
 import { displayLightbox } from "./utils/lightbox.js";
 
@@ -37,7 +42,7 @@ async function initPage() {
   // Appel de la fonction pour ouvrir/fermer le menu de filtre
   openCloseFilterMenu();
   // Calculer le total des "likes"
-  calculateTotalLikes();
+  calculateLikes();
   // Focus sur le modal
   setupContactForm();
   // Affichage du pied de page
@@ -50,12 +55,19 @@ async function initPage() {
   const totalLikesContainer = document.querySelector(".total-likes");
   if (totalLikesContainer) {
     // Mettre à jour l'affichage du total des "likes"
+    const totalLikes = calculateLikes();
+    // Mettre à jour l'affichage du total des "likes"
     updateTotalLikes();
   }
 
   displayLightbox({ photographer: photographe, medias });
+
+  // Calculer le total des "likes"
+  calculateLikes();
   // Appel de la fonction pour gérer les clics sur les boutons de like
   handleLikeButtonClick();
+  // Restaurer les likes depuis le localStorage après la création de la page
+  restoreLikes();
 }
 
 /**
@@ -128,63 +140,5 @@ function renderFooter(data) {
     </aside>`;
 }
 
-// Fonction pour gérer les clics sur le bouton de like
-/**
- * Gère les clics sur les boutons de like.
- *
- * @returns {void}
- */
-export function handleLikeButtonClick() {
-  const likeButtons = document.querySelectorAll(".btn_like");
-
-  // Récupérer les ID des éléments déjà aimés
-  const likedItems = JSON.parse(localStorage.getItem("likedItems")) || [];
-
-  likeButtons.forEach((btn) => {
-    const dataId = btn.getAttribute("data-id");
-
-    // Appliquer la classe 'liked' si l'ID est dans la liste des éléments aimés
-    if (likedItems.includes(dataId)) {
-      btn.classList.add("liked");
-    }
-
-    btn.addEventListener("click", function () {
-      const likeElement = document.querySelector(`[data-id="${dataId}"]`);
-
-      if (likeElement) {
-        const spanLike = likeElement.previousElementSibling;
-        let likes = parseInt(spanLike.textContent, 10);
-
-        if (!isNaN(likes)) {
-          if (btn.classList.contains("liked")) {
-            // Si déjà aimé et re-cliqué, diminuer le compteur et retirer l'ID
-            likes -= 1;
-            btn.classList.remove("liked");
-
-            // Retirer l'ID de l'élément aimé de la liste
-            const index = likedItems.indexOf(dataId);
-            if (index > -1) {
-              likedItems.splice(index, 1);
-              localStorage.setItem("likedItems", JSON.stringify(likedItems));
-            }
-          } else {
-            // Si non aimé, augmenter le compteur et ajouter l'ID
-            likes += 1;
-            btn.classList.add("liked");
-
-            // Ajouter l'ID de l'élément aimé à la liste
-            likedItems.push(dataId);
-            localStorage.setItem("likedItems", JSON.stringify(likedItems));
-          }
-
-          spanLike.textContent = likes;
-          // Mettre à jour le total des likes après avoir modifié un like
-          updateTotalLikes();
-        }
-      }
-    });
-  });
-}
-
 // Appeler la fonction pour initialiser
-handleLikeButtonClick();
+initPage();

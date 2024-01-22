@@ -1,0 +1,64 @@
+// L'intention = cliquer sur un bouton -je garde l'identifiant
+export function handleLikeButtonClick() {
+    // j'ai récupéré toute la liste des boutons like
+  const likeButtons = document.querySelectorAll(".btn_like");
+
+    //récupére moi ce qui se trouve dans le locastorage, et tu me récupéres tout ce qu'il s'appelle "likeItems", et likeItem est une liste c'est pour ca que j'ai utilise JSON.parse et si tu n'as rien trouvé tu me renvoies une liste vide
+  const likedItems = JSON.parse(localStorage.getItem("likedItems")) || [];
+
+  // Pour chaque bouton, j'ai récupéré son data-id
+  likeButtons.forEach((btn) => {
+    const dataId = btn.getAttribute("data-id");
+
+    //est ce que ma liste contient déjà le dataId pour celui sur lequel j'ai cliqué. Et donc si le contient déjà, rajoute moi la classe like
+    if (likedItems.includes(dataId)) {
+      btn.classList.add("liked");
+    }
+
+    //Ensuite, je prends chaque bouton que j'ai parcouru et je lui branche un évènement pour le clique
+    btn.addEventListener("click", function () {
+        //je récupére l'élément que l'on a liké et je le cherche à partir de son dataId
+      const likeElement = document.querySelector(`[data-id="${dataId}"]`);
+
+      //Si je le trouve
+      if (likeElement) {
+        const spanLike = likeElement.previousElementSibling;
+        //Je prends le nombre de like qu'on a dessus
+        let likes = parseInt(spanLike.textContent, 10);
+
+        //Je prend son entier, et si la convertion s'est bien déroulé - l'intention était de diliker ici
+        if (!isNaN(likes)) {
+            //si ça s'est bien passé, je dis si l'élément contient déjà bouton, une classe, un style like
+          if (btn.classList.contains("liked")) {
+            //sinon, je décrémente 
+            likes -= 1;
+            //et j'enleve le style
+            btn.classList.remove("liked");
+
+            //Je prends likeItems pour vérfier si il est dans la liste de mes éléments likeItems que je vais mettre dans le localstorage
+            const index = likedItems.indexOf(dataId);
+            //si il est déjà là son index sera superieur à -1
+            if (index > -1) {
+                 //j'utilise le splice. De index, je prend l'élément si il est déjà la, je le récupére
+              likedItems.splice(index, 1);
+              //et je le supprime du localstorage
+              localStorage.setItem("likedItems", JSON.stringify(likedItems));
+            }
+          } else {
+            
+            likes += 1;
+            btn.classList.add("liked");
+
+            // Ajouter l'ID de l'élément aimé à la liste
+            likedItems.push(dataId);
+            localStorage.setItem("likedItems", JSON.stringify(likedItems));
+          }
+
+          spanLike.textContent = likes;
+          // Mettre à jour le total des likes après avoir modifié un like
+          updateTotalLikes();
+        }
+      }
+    });
+  });
+}

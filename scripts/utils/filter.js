@@ -1,5 +1,5 @@
 import { displayMedia } from "../profil.js";
-import { handleLikeButtonClick } from "../profil.js";
+import { handleLikeButtonClick } from "../utils/likes.js";
 
 /**
  * Gère l'ouverture et la fermeture du menu de filtre.
@@ -96,6 +96,13 @@ export const displayMediaWithFilter = (mediasTemplate) => {
         break;
       default:
         console.log("Aucun tri spécifique spécifié.");
+
+        const filteredMedias = getFilteredMedias(
+          filterValue,
+          mediasTemplate.medias
+        );
+
+        displayMedia(filteredMedias);
     }
 
     displayMedia(mediasTemplate.medias);
