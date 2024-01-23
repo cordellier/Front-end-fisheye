@@ -1,3 +1,6 @@
+// mediaViewer.js
+
+// Importe la fonction simpleMediaNode du fichier mediaUI.js
 import { simpleMediaNode } from "../view/mediaUI.js";
 
 /**
@@ -26,7 +29,7 @@ export const displayLightbox = (medias) => {
   const mediasList = medias.medias;
   let currentIndex = 0;
 
-  //Ajout des écouteurs d'événements aux médias pour ouvrir la lightbox
+  // Ajout des écouteurs d'événements aux médias pour ouvrir la lightbox
   containerMedia.addEventListener("click", (event) => {
     const target = event.target;
     if (target.tagName.toLowerCase() === "img") {
@@ -37,18 +40,32 @@ export const displayLightbox = (medias) => {
     }
   });
 
+  // Fonction pour gérer le clic sur un média
   function handleClickOnMedia(media) {
     const mediaId = media.dataset.media;
-    const mediaIndex = mediasList.findIndex((media) => media.id == mediaId);
+    const mediaIndex = mediasList.findIndex((item) => item.id == mediaId);
     currentIndex = mediaIndex;
-    // Crée un overlay pour l'arrière-plan
+
     const overlay = document.createElement("div");
     overlay.classList.add("lightbox-overlay");
     document.body.appendChild(overlay);
+
     lightboxWrapper.style.display = "flex";
-    btnClose.focus();
+    lightboxWrapper.focus(); // Focus sur la lightbox elle-même pour permettre la navigation au clavier
     lightboxTemplate();
   }
+
+  // Ajouter un gestionnaire d'événements pour la touche "Enter" sur les médias
+  containerMedia.addEventListener("keydown", (event) => {
+    const target = event.target;
+    if (event.key === "Enter" && target.tagName.toLowerCase() === "img") {
+      const media = target.closest(".gallery_card");
+      if (media) {
+        handleClickOnMedia(media);
+      }
+    }
+  });
+
   // Événement de transition pour détecter le moment où la lightbox est ouverte
   lightboxWrapper.addEventListener("transitionend", () => {
     // Appel à lightboxTemplate() seulement après que la lightbox est ouverte

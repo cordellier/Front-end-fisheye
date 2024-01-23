@@ -55,15 +55,11 @@ async function initPage() {
   const totalLikesContainer = document.querySelector(".total-likes");
   if (totalLikesContainer) {
     // Mettre à jour l'affichage du total des "likes"
-    const totalLikes = calculateLikes();
-    // Mettre à jour l'affichage du total des "likes"
     updateTotalLikes();
   }
 
   displayLightbox({ photographer: photographe, medias });
 
-  // Calculer le total des "likes"
-  calculateLikes();
   // Appel de la fonction pour gérer les clics sur les boutons de like
   handleLikeButtonClick();
   // Restaurer les likes depuis le localStorage après la création de la page
@@ -103,8 +99,6 @@ export function displayMedia(listMedia) {
   mediaZone.innerHTML = "";
   listMedia.forEach((media) => (mediaZone.innerHTML += factoryMedia(media)));
 }
-
-initPage();
 
 // Fonction permettant de retourner sur l'accueil
 function redirectToHome() {

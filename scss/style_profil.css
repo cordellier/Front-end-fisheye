@@ -764,6 +764,7 @@ img, video {
   gap: 30px 60px;
   margin-top: 30px;
   width: 1240px;
+  margin-bottom: 50px;
 }
 
 .gallery_card {
@@ -1015,7 +1016,6 @@ aside {
   width: -moz-fit-content;
   width: fit-content;
   padding: 20px;
-  margin-top: 20px;
   border-radius: 5px;
   font-weight: bold;
   font-size: 20px;
