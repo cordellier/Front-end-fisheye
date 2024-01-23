@@ -51,7 +51,7 @@ export const displayLightbox = (medias) => {
     document.body.appendChild(overlay);
 
     lightboxWrapper.style.display = "flex";
-    lightboxWrapper.focus(); // Focus sur la lightbox elle-même pour permettre la navigation au clavier
+    lightboxWrapper.focus();
     lightboxTemplate();
   }
 
@@ -66,9 +66,18 @@ export const displayLightbox = (medias) => {
     }
   });
 
+  // Ajout d'un gestionnaire d'événements pour la touche "Enter" sur les médias
+  containerMedia.addEventListener("keydown", (event) => {
+    const target = event.target;
+    const media = target.closest(".gallery_card");
+
+    if (event.key === "Enter" && media) {
+      handleClickOnMedia(media);
+    }
+  });
+
   // Événement de transition pour détecter le moment où la lightbox est ouverte
   lightboxWrapper.addEventListener("transitionend", () => {
-    // Appel à lightboxTemplate() seulement après que la lightbox est ouverte
     lightboxTemplate();
   });
 
@@ -143,31 +152,35 @@ export const displayLightbox = (medias) => {
   };
 
   // Événement de gestion du focus pour la navigation avec la tabulation
-  lightboxWrapper.addEventListener("keydown", (e) => {
-    if (e.key === "Tab") {
-      e.preventDefault(); // Empêche le comportement par défaut de la tabulation
+  document.addEventListener("keydown", (e) => {
+    // Vérifie si la lightbox est ouverte
+    if (lightboxWrapper.style.display === "flex") {
+      if (e.key === "Tab") {
+        e.preventDefault(); // Empêche le comportement par défaut de la tabulation
 
-      // Détermine les éléments focusables à l'intérieur de la lightbox
-      const focusableElements = lightboxWrapper.querySelectorAll(
-        "input, textarea, button, [tabindex]:not([tabindex='-1'])"
-      );
-      const totalFocusableElements = focusableElements.length;
-
-      if (totalFocusableElements > 1) {
-        let currentIndex = Array.from(focusableElements).indexOf(
-          document.activeElement
+        // Détermine les éléments focusables à l'intérieur de la lightbox
+        const focusableElements = lightboxWrapper.querySelectorAll(
+          "input, textarea, button, [tabindex]:not([tabindex='-1'])"
         );
+        const totalFocusableElements = focusableElements.length;
 
-        // Détermine la direction de la tabulation
-        const shiftTab = e.shiftKey;
+        if (totalFocusableElements > 1) {
+          let currentIndex = Array.from(focusableElements).indexOf(
+            document.activeElement
+          );
 
-        // Met à jour l'index en fonction de la direction de la tabulation
-        currentIndex = shiftTab
-          ? (currentIndex - 1 + totalFocusableElements) % totalFocusableElements
-          : (currentIndex + 1) % totalFocusableElements;
+          // Détermine la direction de la tabulation
+          const shiftTab = e.shiftKey;
 
-        // Applique le focus à l'élément approprié
-        focusableElements[currentIndex].focus();
+          // Met à jour l'index en fonction de la direction de la tabulation
+          currentIndex = shiftTab
+            ? (currentIndex - 1 + totalFocusableElements) %
+              totalFocusableElements
+            : (currentIndex + 1) % totalFocusableElements;
+
+          // Applique le focus à l'élément approprié
+          focusableElements[currentIndex].focus();
+        }
       }
     }
   });

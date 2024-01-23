@@ -807,6 +807,16 @@ a:focus:not(:hover) {
   border-radius: 5px;
   -o-object-fit: cover;
      object-fit: cover;
+  cursor: pointer;
+}
+
+.gallery-thumbnail:hover {
+  -webkit-transform: scale(1.01);
+          transform: scale(1.01);
+}
+
+.gallery-thumbnail:focus:not(:hover) {
+  outline: 2px solid var(--color-secondary);
 }
 
 figcaption {

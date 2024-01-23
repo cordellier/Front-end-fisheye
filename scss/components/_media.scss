@@ -49,6 +49,15 @@ a:focus:not(:hover){
     height: 300px;
     border-radius: 5px;
     object-fit: cover;
+    cursor: pointer;
+}
+
+.gallery-thumbnail:hover {
+    transform: scale(1.01);
+}
+
+.gallery-thumbnail:focus:not(:hover){
+    outline: 2px solid var(--color-secondary);
 }
 
 figcaption{
