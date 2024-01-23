@@ -108,6 +108,13 @@ function redirectToHome() {
 // Écouteur d'événement pour le clic sur le logo
 document.querySelector(".logo").addEventListener("click", redirectToHome);
 
+// Écouteur d'événement pour la touche "Entrée" sur le logo
+document.querySelector(".logo").addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    redirectToHome();
+  }
+});
+
 // Écouteur d'événement pour ouvrir et fermer le modal de contact
 document
   .getElementById("openButton")
